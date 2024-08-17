@@ -1,23 +1,74 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnsdp5mjeacsh"]
+[gd_scene load_steps=11 format=3 uid="uid://cnsdp5mjeacsh"]
 
-[ext_resource type="Texture2D" uid="uid://hu0p3kpn1k7c" path="res://icon.svg" id="1_n2fed"]
 [ext_resource type="Script" path="res://entity/player/player.gd" id="1_oktdr"]
+[ext_resource type="Texture2D" uid="uid://bj31p1mdabkn1" path="res://assets/sprites/exports/player-sprite.png" id="2_y5ko5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rli6t"]
 radius = 6.0
 height = 15.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hcacc"]
+atlas = ExtResource("2_y5ko5")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsdka"]
+atlas = ExtResource("2_y5ko5")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shtn1"]
+atlas = ExtResource("2_y5ko5")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7j4xp"]
+atlas = ExtResource("2_y5ko5")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7l3m"]
+atlas = ExtResource("2_y5ko5")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_arfvh"]
+atlas = ExtResource("2_y5ko5")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5768q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hcacc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rsdka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shtn1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7j4xp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7l3m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_arfvh")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 99
 script = ExtResource("1_oktdr")
 speed = 25.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.125, 0.125)
-texture = ExtResource("1_n2fed")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_rli6t")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(5, 5)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_5768q")
+animation = &"move"
