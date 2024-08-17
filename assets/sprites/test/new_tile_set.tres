@@ -1,6 +1,7 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bb1gacd5omdlc"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://bb1gacd5omdlc"]
 
 [ext_resource type="Texture2D" uid="uid://cimslijvukbj2" path="res://assets/sprites/test/Sprite-0005.png" id="1_1cmkg"]
+[ext_resource type="Texture2D" uid="uid://b0wssykxmmirk" path="res://assets/sprites/test/Sprite-0001-sheet.png" id="2_i6see"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cp28u"]
 texture = ExtResource("1_1cmkg")
@@ -14,5 +15,11 @@ texture = ExtResource("1_1cmkg")
 1:2/0 = 0
 2:2/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a8gx2"]
+texture = ExtResource("2_i6see")
+0:0/0 = 0
+1:0/0 = 0
+
 [resource]
 sources/0 = SubResource("TileSetAtlasSource_cp28u")
+sources/1 = SubResource("TileSetAtlasSource_a8gx2")

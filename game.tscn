@@ -7,12 +7,9 @@
 [node name="Game" type="Node2D"]
 
 [node name="TileMapGenerator" parent="." instance=ExtResource("2_604mt")]
-climbable_width = 18
-climbable_height = 100
+position = Vector2(-1, 0)
 
 [node name="Player" parent="." instance=ExtResource("1_ca313")]
-z_index = 1
-position = Vector2(0, 8)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_set = ExtResource("3_r3a0r")
