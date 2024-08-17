@@ -7,3 +7,5 @@ res://level/base_level.tscn
 res://game.tscn
 res://entity/player/player.tscn
 res://entity/player/player.gd
+res://tile_map_generator/tile_map_generator.gd
+res://tile_map_generator/tile_map_generator.tscn

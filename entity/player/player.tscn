@@ -3,19 +3,20 @@
 [ext_resource type="Texture2D" uid="uid://hu0p3kpn1k7c" path="res://icon.svg" id="1_n2fed"]
 [ext_resource type="Script" path="res://entity/player/player.gd" id="1_oktdr"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3gcif"]
-radius = 40.0
-height = 128.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rli6t"]
+radius = 5.0
+height = 15.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_oktdr")
-speed = 100.0
+speed = 25.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.6875, 1)
+scale = Vector2(0.09375, 0.125)
 texture = ExtResource("1_n2fed")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_3gcif")
+shape = SubResource("CapsuleShape2D_rli6t")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)

@@ -1,6 +1,10 @@
+TileMapLayer
+TileMap
+Node2D
+Node
+CollisionShape2D
 Sprite2D
 Camera2D
-CollisionShape2D
 CharacterBody2D
 MarginContainer
 Button
