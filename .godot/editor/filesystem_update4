@@ -1,1 +1,9 @@
+res://main.tscn
 res://events.gd
+res://globals.gd
+res://UI/menu/main_menu.tscn
+res://UI/menu/play_button.gd
+res://level/base_level.tscn
+res://game.tscn
+res://entity/player/player.tscn
+res://entity/player/player.gd

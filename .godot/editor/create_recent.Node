@@ -1,0 +1,9 @@
+Sprite2D
+Camera2D
+CollisionShape2D
+CharacterBody2D
+MarginContainer
+Button
+VBoxContainer
+TextureRect
+Control

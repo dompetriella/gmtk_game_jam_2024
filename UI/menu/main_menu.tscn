@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4x5t3gg3mvxe"]
+
+[ext_resource type="Script" path="res://UI/menu/play_button.gd" id="1_sifev"]
+
+[sub_resource type="Gradient" id="Gradient_qalf2"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y876s"]
+gradient = SubResource("Gradient_qalf2")
+fill_from = Vector2(0.502294, 0)
+fill_to = Vector2(0.529817, 1)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1174.0
+offset_bottom = 653.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_y876s")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_right = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="TextureRect/VBoxContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Play"
+script = ExtResource("1_sifev")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_bottom = 0
+
+[node name="SettingssButton" type="Button" parent="TextureRect/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Settings"
+
+[connection signal="pressed" from="TextureRect/VBoxContainer/PlayButton" to="TextureRect/VBoxContainer/PlayButton" method="_on_pressed"]
