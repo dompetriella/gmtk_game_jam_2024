@@ -2,19 +2,27 @@ class_name HazardGenerator
 extends Node2D
 
 @onready var fire_timer: Timer = $"%FireTimer";
+@onready var tile_map_generator: TileMapGenerator = $".."
+
 
 var base_size: Vector2;
 var tile_map: TileMapLayer
 var hazard_scene: PackedScene = preload("res://tile_map_generator/hazard.tscn");
 var fire_animated_sprite = preload("res://assets/sprites/test/fire.tres");
 var hazard_list: Array[Hazard] = [];
+var time_before_initial_fire: float;
+var time_between_fires: float;
+var time_between_spreading_fire: float;
 
 
 func _ready() -> void:
-	base_size = Vector2(get_parent().climbable_width, get_parent().climbable_height);
 	self.call_deferred("_generate_area_2d_hazard_base_layer");
-	var tile_generator: TileMapGenerator = self.get_parent();
-	fire_timer.wait_time = tile_generator.time_before_initial_fire;
+	base_size = Vector2(tile_map_generator.climbable_width, tile_map_generator.climbable_height);
+	time_before_initial_fire = tile_map_generator.time_before_initial_fire;
+	time_between_fires = tile_map_generator.time_between_fires;
+	time_between_spreading_fire = tile_map_generator.time_between_fire_spread;
+	fire_timer.wait_time = time_before_initial_fire;
+	
 	fire_timer.one_shot = true;
 	fire_timer.start();
 
@@ -33,15 +41,61 @@ func _generate_area_2d_hazard_base_layer():
 		self.add_child(hazard);
 	
 func _on_fire_timer_timeout() -> void:
+	_fire_timer_timeout();
+	var timer: Timer = Timer.new();
+	timer.autostart = true;
+	timer.one_shot = true;
+	timer.wait_time = time_between_fires;
+	timer.timeout.connect(_fire_timer_timeout);
+	self.get_parent().add_child(timer);
+	
+func _fire_timer_timeout():
 	var hazard_children: Array[Node] = self.get_children();
-	for hazard: Hazard in hazard_children:
-		if (hazard.hazard_coordinate == Vector2(0,0)):
-			hazard.is_on_fire = true;
-			hazard.set_animated_sprite(fire_animated_sprite);
-			
-			
-func _add_fire_timer_to_neighbors(neighbor: Hazard) -> void:
-	pass;
+	var first_fire_tile_vector: Vector2;
+	var i: int = 0;
+	while (true):
+		i += 1;
+		first_fire_tile_vector = Vector2((randi() % int(base_size.x)), (randi() % int(base_size.y) + 2));
+		for hazard: Hazard in hazard_children:
+			if (hazard.hazard_coordinate == first_fire_tile_vector && hazard.is_on_fire == false):
+				hazard.is_on_fire = true;
+				hazard.set_animated_sprite(fire_animated_sprite);
+				break;
+			break;
+		if (i >= 50):
+			break;
+	_set_fire_to_neighbors(first_fire_tile_vector);
+
+func _set_fire_to_neighbors(current_hazard_vector: Vector2):
+		var new_hazard_tiles: Array[Hazard] = _get_area_neighbors(current_hazard_vector);
+		for new_hazard: Hazard in new_hazard_tiles:
+			_add_fire_timer_to_neighbors(new_hazard, 10);
 
 func _get_area_neighbors(current_tile: Vector2) -> Array[Hazard]:
-	return [];
+	var hazard_children: Array[Node] = self.get_children();
+	var hazard_tiles: Array[Hazard] = [];
+	for hazard in hazard_children:
+		if (
+			# right
+			hazard.hazard_coordinate == Vector2(current_tile.x + 1, current_tile.y) || 
+			#left
+			hazard.hazard_coordinate == Vector2(current_tile.x - 1, current_tile.y) || 
+			#up
+			hazard.hazard_coordinate == Vector2(current_tile.x, current_tile.y - 1) || 
+			#down
+			hazard.hazard_coordinate == Vector2(current_tile.x, current_tile.y + 1)):
+				if (hazard.hazard_coordinate.y > 2 && hazard.hazard_coordinate.y < base_size.y - 2):
+					hazard_tiles.append(hazard);
+					print('Found neighbor ' + hazard.name);
+	return hazard_tiles;
+
+func _add_fire_timer_to_neighbors(neighbor: Hazard, old_timer: float) -> void:
+	if (!neighbor.is_on_fire):
+		neighbor.is_on_fire = true;
+		neighbor.set_animated_sprite(fire_animated_sprite);
+		var new_fire_timer: Timer = Timer.new();
+		new_fire_timer.autostart = true;
+		new_fire_timer.wait_time = time_between_spreading_fire;
+		new_fire_timer.timeout.connect(_set_fire_to_neighbors.bind(neighbor.hazard_coordinate));
+		neighbor.add_child(new_fire_timer);
+		
