@@ -1,14 +1,42 @@
 extends CharacterBody2D
 
 
-@export var speed = 300.0
+@export var speed = 300.0;
+
+@onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
+
+var direction: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	self.global_position = Vector2(16 * 9, 0);
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float):
+	handle_input();
+	move_and_animate(delta);
 
-	self.velocity = Input.get_vector("ui_left","ui_right","ui_up","ui_down").normalized() * speed;
-	self.move_and_slide();
+func handle_input():
+	direction = Vector2.ZERO;
 
-	move_and_slide()
+	if Input.is_action_pressed("ui_right"):
+		direction.x += 1;
+	if Input.is_action_pressed("ui_left"):
+		direction.x -= 1;
+	if Input.is_action_pressed("ui_down"):
+		direction.y += 1;
+	if Input.is_action_pressed("ui_up"):
+		direction.y -= 1;
+
+	# Normalize the direction vector to maintain consistent speed
+	direction = direction.normalized();
+
+func move_and_animate(delta: float):
+	if direction != Vector2.ZERO:
+		# Move the character
+		velocity = direction * speed
+		move_and_slide();
+
+		# Play the animation
+		if not player_sprite.is_playing():
+			player_sprite.play("move");
+	else:
+		player_sprite.pause();

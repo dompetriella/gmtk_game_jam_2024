@@ -8,3 +8,4 @@ res://tile_map_generator/hazard_generator.gd
 res://tile_map_generator/hazard.tscn
 res://tile_map_generator/hazard.gd
 res://globals.gd
+res://entity/player/player.gd
