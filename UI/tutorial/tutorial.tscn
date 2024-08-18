@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlhyhfrog51ql"]
+
+[ext_resource type="Script" path="res://UI/tutorial/tutorial_button_continue.gd" id="1_trg82"]
+
+[sub_resource type="Gradient" id="Gradient_6te0t"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mjlon"]
+gradient = SubResource("Gradient_6te0t")
+fill_from = Vector2(0.200893, 0.299107)
+fill_to = Vector2(0.0892857, 0.9375)
+
+[node name="Tutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_mjlon")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 248.0
+theme_override_font_sizes/font_size = 60
+text = "TURORIAL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartGameButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 816.0
+offset_top = 512.0
+offset_right = 1120.0
+offset_bottom = 616.0
+theme_override_font_sizes/font_size = 32
+text = "Continue"
+script = ExtResource("1_trg82")
+
+[connection signal="pressed" from="StartGameButton" to="StartGameButton" method="_on_pressed"]

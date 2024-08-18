@@ -1,9 +1,9 @@
+res://level
+res://assets/sprites/exports
 res://assets/sprites/resources
 res://
 res://UI/approval_bar
 res://UI/climbing_progress_bar
-res://level
-res://assets/sprites/exports
 res://assets/sprites/test
 res://tile_map_generator
 res://entity/player

@@ -1,4 +1,8 @@
+Button
+Label
 TextureRect
+AnimationPlayer
+ColorRect
 CanvasLayer
 Sprite2D
 ParallaxLayer
@@ -9,6 +13,3 @@ CollisionShape2D
 Area2D
 StaticBody2D
 ProgressBar
-Label
-TextureProgressBar
-Panel

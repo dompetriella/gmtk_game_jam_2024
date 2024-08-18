@@ -3,6 +3,7 @@ extends Node2D
 
 @onready var fire_timer: Timer = $"%FireTimer";
 @onready var tile_map_generator: TileMapGenerator = $".."
+@onready var fire_seed_timer: Timer = $"../FireSeedTimer"
 
 
 var base_size: Vector2;
@@ -17,14 +18,18 @@ var time_between_spreading_fire: float;
 
 func _ready() -> void:
 	self.call_deferred("_generate_area_2d_hazard_base_layer");
+	
+	
 	base_size = Vector2(tile_map_generator.climbable_width, tile_map_generator.climbable_height);
 	time_before_initial_fire = tile_map_generator.time_before_initial_fire;
 	time_between_fires = tile_map_generator.time_between_fires;
 	time_between_spreading_fire = tile_map_generator.time_between_fire_spread;
 	fire_timer.wait_time = time_before_initial_fire;
-	
 	fire_timer.one_shot = true;
+
+func _turn_on_fire_timers():
 	fire_timer.start();
+	fire_seed_timer.star();
 
 func _generate_area_2d_hazard_base_layer():
 	var total: int = base_size.x * base_size.y;

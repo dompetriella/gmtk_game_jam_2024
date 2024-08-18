@@ -1,10 +1,17 @@
-[gd_scene load_steps=16 format=3 uid="uid://cnsdp5mjeacsh"]
+[gd_scene load_steps=26 format=3 uid="uid://cnsdp5mjeacsh"]
 
 [ext_resource type="Script" path="res://entity/player/player.gd" id="1_oktdr"]
 [ext_resource type="Texture2D" uid="uid://bj31p1mdabkn1" path="res://assets/sprites/exports/player-sprite.png" id="2_y5ko5"]
 [ext_resource type="Script" path="res://UI/energy_bar/energy_bar.gd" id="3_8hren"]
 [ext_resource type="Script" path="res://UI/approval_bar/approval_bar.gd" id="3_kejnb"]
+[ext_resource type="Texture2D" uid="uid://b25d01xvrnc24" path="res://assets/sprites/exports/player-victory-sprite.png" id="3_m7srq"]
 [ext_resource type="Script" path="res://UI/climbing_progress_bar/climbing_progress_bar.gd" id="4_7br2w"]
+[ext_resource type="Texture2D" uid="uid://ctnwo3jxt8aol" path="res://assets/sprites/exports/player-walk-sprite.png" id="4_ttb8r"]
+[ext_resource type="PackedScene" uid="uid://dwf38ith8shuu" path="res://level/fade_transition.tscn" id="8_baxod"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shtn1"]
+atlas = ExtResource("2_y5ko5")
+region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hcacc"]
 atlas = ExtResource("2_y5ko5")
@@ -13,10 +20,6 @@ region = Rect2(0, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_rsdka"]
 atlas = ExtResource("2_y5ko5")
 region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_shtn1"]
-atlas = ExtResource("2_y5ko5")
-region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7j4xp"]
 atlas = ExtResource("2_y5ko5")
@@ -30,8 +33,44 @@ region = Rect2(128, 0, 32, 32)
 atlas = ExtResource("2_y5ko5")
 region = Rect2(160, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4sl76"]
+atlas = ExtResource("3_m7srq")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xav7a"]
+atlas = ExtResource("4_ttb8r")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dae26"]
+atlas = ExtResource("4_ttb8r")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbwci"]
+atlas = ExtResource("4_ttb8r")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlj2p"]
+atlas = ExtResource("4_ttb8r")
+region = Rect2(96, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_too1t"]
+atlas = ExtResource("4_ttb8r")
+region = Rect2(128, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0xy6"]
+atlas = ExtResource("4_ttb8r")
+region = Rect2(160, 0, 32, 48)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_5768q"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shtn1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hcacc")
@@ -53,6 +92,37 @@ animations = [{
 }],
 "loop": true,
 "name": &"move",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4sl76")
+}],
+"loop": true,
+"name": &"victory",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xav7a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dae26")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sbwci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlj2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_too1t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0xy6")
+}],
+"loop": true,
+"name": &"walk",
 "speed": 5.0
 }]
 
@@ -86,7 +156,7 @@ energy_usage_rate = 200.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_5768q")
-animation = &"move"
+autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_rli6t")
@@ -153,5 +223,7 @@ offset_right = 64.0
 offset_bottom = 608.0
 fill_mode = 3
 script = ExtResource("4_7br2w")
+
+[node name="Fade" parent="CanvasLayer" instance=ExtResource("8_baxod")]
 
 [connection signal="area_entered" from="WaterNozzleArea" to="." method="_on_water_nozzle_area_area_entered"]

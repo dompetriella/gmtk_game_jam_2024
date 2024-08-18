@@ -66,7 +66,7 @@ func _generate_tiles():
 	self.get_parent().add_child(tile_map);
 	
 	var ranger_station = ranger_station.instantiate();
-	ranger_station.global_position = Vector2(((climbable_width-1.5) * Globals.pixel_size) - Globals.pixel_size * 2, -1 * (climbable_height + 1) * Globals.pixel_size );
+	ranger_station.global_position = Vector2(((climbable_width) * Globals.pixel_size) - Globals.pixel_size * 4.5, (-1 * (climbable_height + 1) * Globals.pixel_size) - 2 );
 	self.get_parent().add_child(ranger_station);
 	
 	

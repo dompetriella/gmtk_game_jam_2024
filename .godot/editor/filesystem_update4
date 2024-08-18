@@ -7,3 +7,12 @@ res://entity/player/player.tscn
 res://tile_map_generator/hazard.tscn
 res://level/ranger_station.tscn
 res://entity/player/player.gd
+res://tile_map_generator/tile_map_generator.gd
+res://events.gd
+res://level/fade_transition.tscn
+res://level/fade_transition.gd
+res://tile_map_generator/hazard_generator.gd
+res://UI/tutorial/tutorial.tscn
+res://UI/menu/play_button.gd
+res://UI/menu/main_menu.tscn
+res://UI/tutorial/tutorial_button_continue.gd
