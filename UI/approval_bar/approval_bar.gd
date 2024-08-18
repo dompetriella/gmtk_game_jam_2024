@@ -6,9 +6,10 @@ func _process(delta: float) -> void:
 	var hazard_generator: HazardGenerator = get_tree().get_first_node_in_group(NodeGroups.hazard_generator);
 	
 	#remove the tiles that can't catch fire
-	self.max_value = (tile_generator.climbable_width * tile_generator.climbable_height) - (tile_generator.climbable_width * 3);
-	var current_meter: float = 0;
-	for hazard_children: Hazard in hazard_generator.get_children():
-		if (hazard_children.is_on_fire):
-			current_meter += 1;
-	self.value = max_value - current_meter;
+	if (tile_generator != null):
+		self.max_value = (tile_generator.climbable_width * tile_generator.climbable_height) - (tile_generator.climbable_width * 3);
+		var current_meter: float = 0;
+		for hazard_children: Hazard in hazard_generator.get_children():
+			if (hazard_children.is_on_fire):
+				current_meter += 1;
+		self.value = max_value - current_meter;

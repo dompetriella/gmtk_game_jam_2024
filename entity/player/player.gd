@@ -10,9 +10,11 @@ extends CharacterBody2D
 @export var energy_usage_while_dowsing: float = 12;
 @export var energy_usage_rate: float = 100;
 
+
 @onready var water_nozzle_area: Area2D = $WaterNozzleArea
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var water_particles: GPUParticles2D = $WaterNozzleArea/GPUParticles2D
+@onready var temp_continue_button: Button = $CanvasLayer/TempContinueButton
 
 var direction: Vector2 = Vector2.ZERO
 var is_watering: bool = false;
@@ -30,9 +32,13 @@ func _ready() -> void:
 			current_energy = current_energy - (energy_damage / (500-energy_usage_rate));
 	);
 	Events.player_enter_cutscene.connect(_handle_cutscene)
+	Events.show_build_on_options.connect(_on_show_build_on_options);
 	Events.player_exit_cutscene.connect(func():
 		in_cutscene = false;	
 	)
+
+func _on_show_build_on_options():
+	temp_continue_button.visible = true;
 
 func _process(delta: float):
 	
@@ -94,6 +100,7 @@ func _handle_cutscene(cutscene_type: Enums.cutscene_type):
 		var move_to_ranger_station_time: float = 5;
 		var time_buffer: float = 0.25;
 		var victory_time: float = 8;
+		var wait_until_build_ons_shown: float = 5;
 		
 		var movement_tween: Tween = create_tween();
 		print("current position: " + str(self.global_position) );
@@ -116,7 +123,8 @@ func _handle_cutscene(cutscene_type: Enums.cutscene_type):
 		move_left_tween.stop();
 		player_sprite.stop();
 		
-		
+		await get_tree().create_timer(wait_until_build_ons_shown).timeout;
+		Events.show_build_on_options.emit();
 
 func _on_water_nozzle_area_area_entered(area: Area2D) -> void:
 	if (area is Hazard && is_watering):

@@ -1,7 +1,6 @@
 class_name TileMapGenerator
 extends Node2D
 
-@export var climbable_width: int = 18;
 @export var climbable_height: int  = 5;
 @export var time_before_initial_fire: float = 10;
 @export var time_between_fires: float = 10;
@@ -9,6 +8,7 @@ extends Node2D
 
 @onready var fire_timer: Timer = $FireTimer
 
+const climbable_width: int = 18;
 const ranger_station = preload("res://level/ranger_station.tscn")
 var tile_set = preload("res://assets/sprites/resources/ranger_tile_set_edit.tres");
 
