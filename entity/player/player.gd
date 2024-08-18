@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 
@@ -5,12 +6,14 @@ extends CharacterBody2D
 
 @onready var water_nozzle_area: Area2D = $WaterNozzleArea
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var water_particles: GPUParticles2D = $WaterNozzleArea/GPUParticles2D
 
 var direction: Vector2 = Vector2.ZERO
 var is_watering: bool = false;
 
 func _ready() -> void:
 	self.global_position = Vector2(16 * 9, 0);
+	water_particles.emitting = false;
 
 func _process(delta: float):
 	handle_input();
@@ -20,11 +23,11 @@ func _process(delta: float):
 func _handle_watering():
 		if Input.is_action_pressed("ui_select"):
 			is_watering = true;
-			water_nozzle_area.visible = true;
-			print('oh he watering');
+			await get_tree().create_timer(0.1).timeout;
+			water_particles.emitting = true;
 		else:
 			is_watering = false;
-			water_nozzle_area.visible = false;
+			water_particles.emitting = false;
 	
 func handle_input():
 	direction = Vector2.ZERO;
@@ -55,11 +58,6 @@ func move_and_animate(delta: float):
 
 
 func _on_water_nozzle_area_area_entered(area: Area2D) -> void:
-	if (area is Hazard):
-		if (area.is_on_fire && is_watering):
-			area.is_on_fire = false;
-			area.animated_sprite_2d.sprite_frames = null;
-			var hazard_children = area.get_children();
-			for child in hazard_children:
-				if (child is Timer):
-					child.stop();
+	if (area is Hazard && is_watering):
+		Events.dowse_hazard_tile.emit(area.hazard_list_index);
+			
