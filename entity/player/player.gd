@@ -90,13 +90,27 @@ func _handle_cutscene(cutscene_type: Enums.cutscene_type):
 		player_sprite.play("move");
 		var next_position: Vector2 = Vector2((tile_generator.climbable_width * Globals.pixel_size / 2), ( -1 * tile_generator.climbable_height * Globals.pixel_size));
 		
+		var move_to_top_time: float = 0.75;
+		var move_to_ranger_station_time: float = 5;
+		var time_buffer: float = 0.25;
+		
 		var movement_tween: Tween = create_tween();
 		print("current position: " + str(self.global_position) );
 		print("moving to: " + str(next_position) + "\n");
-		movement_tween.tween_property(self, "global_position", next_position, (0.75)).from_current();
-		movement_tween.tween_callback(func(): 
-			player_sprite.stop();
-		);	
+		print("moving up");
+		movement_tween.tween_property(self, "global_position", next_position, (move_to_top_time)).from_current();
+		await get_tree().create_timer(move_to_top_time).timeout;
+		player_sprite.stop();
+		movement_tween.stop();
+		await get_tree().create_timer(1).timeout;
+		next_position = Vector2(self.global_position.x + (Globals.pixel_size*5) , self.global_position.y)
+		var move_left_tween: Tween = create_tween();
+		print("moving right");
+		move_left_tween.tween_property(self, "global_position", next_position, (move_to_ranger_station_time));
+		await get_tree().create_timer(move_to_ranger_station_time + time_buffer).timeout;
+		move_left_tween.stop();
+		
+		
 
 func _on_water_nozzle_area_area_entered(area: Area2D) -> void:
 	if (area is Hazard && is_watering):

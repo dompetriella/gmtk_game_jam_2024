@@ -1,3 +1,5 @@
+TextureRect
+CanvasLayer
 Sprite2D
 ParallaxLayer
 ParallaxBackground
@@ -10,5 +12,3 @@ ProgressBar
 Label
 TextureProgressBar
 Panel
-CanvasLayer
-Control

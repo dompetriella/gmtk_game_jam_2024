@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=4 uid="uid://bev2k05fe3j12"]
+[gd_scene load_steps=7 format=4 uid="uid://bev2k05fe3j12"]
 
 [ext_resource type="PackedScene" uid="uid://cnsdp5mjeacsh" path="res://entity/player/player.tscn" id="1_ca313"]
-[ext_resource type="Texture2D" uid="uid://dnu54rwy7lsdk" path="res://assets/sprites/exports/sky-bg.jpeg" id="1_pnyud"]
 [ext_resource type="PackedScene" uid="uid://bnqrijhnq5a3b" path="res://tile_map_generator/tile_map_generator.tscn" id="2_604mt"]
 [ext_resource type="Script" path="res://level/left_barrier.gd" id="3_ksnpd"]
 [ext_resource type="TileSet" uid="uid://b6akmbadi4sw" path="res://assets/sprites/resources/ranger_tile_set_edit.tres" id="4_7spav"]
@@ -13,16 +12,6 @@ size = Vector2(18, 112)
 size = Vector2(1856.13, 17)
 
 [node name="Game" type="Node2D"]
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-scroll_base_scale = Vector2(0, 0)
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2(16, 144)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-texture = ExtResource("1_pnyud")
-centered = false
 
 [node name="TileMapGenerator" parent="." instance=ExtResource("2_604mt")]
 position = Vector2(-1, 0)
