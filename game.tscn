@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bev2k05fe3j12"]
+[gd_scene load_steps=6 format=3 uid="uid://bev2k05fe3j12"]
 
 [ext_resource type="PackedScene" uid="uid://cnsdp5mjeacsh" path="res://entity/player/player.tscn" id="1_ca313"]
 [ext_resource type="PackedScene" uid="uid://bnqrijhnq5a3b" path="res://tile_map_generator/tile_map_generator.tscn" id="2_604mt"]
+[ext_resource type="Script" path="res://level/left_barrier.gd" id="3_ksnpd"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xba74"]
-size = Vector2(16, 129.25)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkkjn"]
+size = Vector2(18, 112)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_668bp"]
+size = Vector2(1856.13, 17)
 
 [node name="Game" type="Node2D"]
 
@@ -18,8 +22,24 @@ time_between_fire_spread = 10.0
 [node name="Player" parent="." instance=ExtResource("1_ca313")]
 speed = 40.0
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="LeftBarrier" type="StaticBody2D" parent="."]
+script = ExtResource("3_ksnpd")
+starting_vector = Vector2(3, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-16, -64.625)
-shape = SubResource("RectangleShape2D_xba74")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBarrier"]
+position = Vector2(-17, -56)
+shape = SubResource("RectangleShape2D_jkkjn")
+
+[node name="RightBarrier" type="StaticBody2D" parent="."]
+script = ExtResource("3_ksnpd")
+starting_vector = Vector2(301, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightBarrier"]
+position = Vector2(-17, -56)
+shape = SubResource("RectangleShape2D_jkkjn")
+
+[node name="BottomBarrier" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomBarrier"]
+position = Vector2(927.938, 16)
+shape = SubResource("RectangleShape2D_668bp")

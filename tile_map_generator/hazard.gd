@@ -1,6 +1,8 @@
 class_name Hazard
 extends Area2D
 
+enum HazardType {FIRE, BRAMBLE, ENEMY}
+
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 var hazard_list_index: int;
@@ -29,3 +31,5 @@ func _dowse_hazard_tile(tile_id: int):
 func _on_body_entered(body: Node2D) -> void:
 	if (body is Player && is_on_fire):
 		print('ouch!');
+		var multiplier: float = body.energy_usage_rate;
+		Events.player_takes_energy_damage.emit(50 * multiplier);

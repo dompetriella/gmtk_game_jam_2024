@@ -1,7 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://cnsdp5mjeacsh"]
+[gd_scene load_steps=15 format=3 uid="uid://cnsdp5mjeacsh"]
 
 [ext_resource type="Script" path="res://entity/player/player.gd" id="1_oktdr"]
 [ext_resource type="Texture2D" uid="uid://bj31p1mdabkn1" path="res://assets/sprites/exports/player-sprite.png" id="2_y5ko5"]
+[ext_resource type="Script" path="res://entity/player/energy_bar.gd" id="3_8hren"]
+[ext_resource type="Script" path="res://UI/climbing_progress_bar/climbing_progress_bar.gd" id="4_7br2w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hcacc"]
 atlas = ExtResource("2_y5ko5")
@@ -74,10 +76,11 @@ linear_accel_max = -2.23517e-06
 hue_variation_min = -0.22
 hue_variation_max = 0.03
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 99
 script = ExtResource("1_oktdr")
 speed = 25.0
+energy_usage_rate = 200.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
@@ -117,6 +120,8 @@ offset_top = 384.0
 offset_right = 128.0
 offset_bottom = 600.0
 value = 100.0
+fill_mode = 3
+script = ExtResource("3_8hren")
 
 [node name="ApprovalLabel" type="Label" parent="CanvasLayer"]
 offset_left = 16.0
@@ -136,10 +141,11 @@ text = "E"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+[node name="ClimbingProgressBar" type="ProgressBar" parent="CanvasLayer"]
 offset_left = 128.0
 offset_top = 8.0
 offset_right = 1024.0
 offset_bottom = 35.0
+script = ExtResource("4_7br2w")
 
 [connection signal="area_entered" from="WaterNozzleArea" to="." method="_on_water_nozzle_area_area_entered"]
