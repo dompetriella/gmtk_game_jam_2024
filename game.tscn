@@ -1,18 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bev2k05fe3j12"]
+[gd_scene load_steps=3 format=3 uid="uid://bev2k05fe3j12"]
 
 [ext_resource type="PackedScene" uid="uid://cnsdp5mjeacsh" path="res://entity/player/player.tscn" id="1_ca313"]
 [ext_resource type="PackedScene" uid="uid://bnqrijhnq5a3b" path="res://tile_map_generator/tile_map_generator.tscn" id="2_604mt"]
-[ext_resource type="TileSet" uid="uid://bb1gacd5omdlc" path="res://assets/sprites/test/new_tile_set.tres" id="3_r3a0r"]
 
 [node name="Game" type="Node2D"]
 
 [node name="TileMapGenerator" parent="." instance=ExtResource("2_604mt")]
 position = Vector2(-1, 0)
 climbable_height = 20
-time_before_initial_fire = 5.0
+time_before_initial_fire = 3.0
+time_between_fire_spread = 8.0
 
 [node name="Player" parent="." instance=ExtResource("1_ca313")]
 speed = 40.0
-
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_set = ExtResource("3_r3a0r")

@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://tile_map_generator/hazard.gd" id="1_h3s5n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hd6te"]
+size = Vector2(6, 6)
 
 [node name="Hazard" type="Area2D"]
 script = ExtResource("1_h3s5n")
@@ -13,3 +14,5 @@ shape = SubResource("RectangleShape2D_hd6te")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-7, -8)
 centered = false
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
