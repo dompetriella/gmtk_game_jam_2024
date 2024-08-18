@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://entity/player/player.gd" id="1_oktdr"]
 [ext_resource type="Texture2D" uid="uid://bj31p1mdabkn1" path="res://assets/sprites/exports/player-sprite.png" id="2_y5ko5"]
-[ext_resource type="Script" path="res://entity/player/energy_bar.gd" id="3_8hren"]
+[ext_resource type="Script" path="res://UI/energy_bar/energy_bar.gd" id="3_8hren"]
 [ext_resource type="Script" path="res://UI/approval_bar/approval_bar.gd" id="3_kejnb"]
 [ext_resource type="Script" path="res://UI/climbing_progress_bar/climbing_progress_bar.gd" id="4_7br2w"]
 
@@ -81,10 +81,6 @@ hue_variation_max = 0.03
 z_index = 99
 script = ExtResource("1_oktdr")
 speed = 25.0
-energy_capacity = null
-energy_usage_while_climbing = null
-energy_usage_while_still = null
-energy_usage_while_dowsing = null
 energy_usage_rate = 200.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -97,6 +93,7 @@ shape = SubResource("CapsuleShape2D_rli6t")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(5, 5)
+limit_bottom = 32
 
 [node name="WaterNozzleArea" type="Area2D" parent="."]
 
@@ -114,45 +111,47 @@ lifetime = 0.18
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ApprovalBar" type="ProgressBar" parent="CanvasLayer"]
-offset_left = 16.0
-offset_top = 384.0
-offset_right = 64.0
-offset_bottom = 600.0
+offset_left = 80.0
+offset_top = 32.0
+offset_right = 128.0
+offset_bottom = 304.0
+value = 100.0
 fill_mode = 3
 script = ExtResource("3_kejnb")
 
 [node name="EnergyBar" type="ProgressBar" parent="CanvasLayer"]
 offset_left = 80.0
-offset_top = 384.0
+offset_top = 336.0
 offset_right = 128.0
-offset_bottom = 600.0
+offset_bottom = 608.0
 value = 100.0
 fill_mode = 3
 script = ExtResource("3_8hren")
 
 [node name="ApprovalLabel" type="Label" parent="CanvasLayer"]
-offset_left = 16.0
-offset_top = 608.0
-offset_right = 64.0
-offset_bottom = 631.0
+offset_left = 72.0
+offset_top = 280.0
+offset_right = 136.0
+offset_bottom = 303.0
 text = "A"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="EnergyLabel" type="Label" parent="CanvasLayer"]
-offset_left = 80.0
-offset_top = 608.0
-offset_right = 128.0
-offset_bottom = 631.0
+offset_left = 72.0
+offset_top = 584.0
+offset_right = 136.0
+offset_bottom = 607.0
 text = "E"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ClimbingProgressBar" type="ProgressBar" parent="CanvasLayer"]
-offset_left = 128.0
-offset_top = 8.0
-offset_right = 1024.0
-offset_bottom = 35.0
+offset_left = 16.0
+offset_top = 32.0
+offset_right = 64.0
+offset_bottom = 608.0
+fill_mode = 3
 script = ExtResource("4_7br2w")
 
 [connection signal="area_entered" from="WaterNozzleArea" to="." method="_on_water_nozzle_area_area_entered"]

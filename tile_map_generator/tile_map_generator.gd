@@ -9,6 +9,7 @@ extends Node2D
 
 @onready var fire_timer: Timer = $FireTimer
 
+const ranger_station = preload("res://level/ranger_station.tscn")
 var tile_set = preload("res://assets/sprites/resources/ranger_tile_set_edit.tres");
 
 
@@ -54,6 +55,20 @@ func _generate_tiles():
 			else:
 				#center
 				tile_map.set_cell(Vector2i(x, -y), 0, Vector2i(randi() % 8 + 1, randi() % 4 + 1));
+					# Get the current modulation color
+			var modulate_color = modulate
+			
+			# Make it 10% darker
+			modulate_color.r *= 0.8
+			modulate_color.g *= 0.8
+			modulate_color.b *= 0.8
+			tile_map.modulate = modulate_color;
 	self.get_parent().add_child(tile_map);
 	
+	var ranger_station = ranger_station.instantiate();
+	ranger_station.global_position = Vector2(((climbable_width-1.5) * Globals.pixel_size) - Globals.pixel_size * 2, -1 * (climbable_height + 1) * Globals.pixel_size );
+	self.get_parent().add_child(ranger_station);
 	
+	
+func _add_ranger_station():
+	pass;
