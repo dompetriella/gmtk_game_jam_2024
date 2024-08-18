@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=4 uid="uid://bev2k05fe3j12"]
+[gd_scene load_steps=8 format=4 uid="uid://bev2k05fe3j12"]
 
 [ext_resource type="PackedScene" uid="uid://cnsdp5mjeacsh" path="res://entity/player/player.tscn" id="1_ca313"]
+[ext_resource type="Script" path="res://game.gd" id="1_xd865"]
 [ext_resource type="PackedScene" uid="uid://bnqrijhnq5a3b" path="res://tile_map_generator/tile_map_generator.tscn" id="2_604mt"]
 [ext_resource type="Script" path="res://level/left_barrier.gd" id="3_ksnpd"]
 [ext_resource type="TileSet" uid="uid://b6akmbadi4sw" path="res://assets/sprites/resources/ranger_tile_set_edit.tres" id="4_7spav"]
@@ -11,10 +12,10 @@ size = Vector2(18, 112)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_668bp"]
 size = Vector2(1856.13, 17)
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" groups=["GameRoot"]]
+script = ExtResource("1_xd865")
 
-[node name="TileMapGenerator" parent="." instance=ExtResource("2_604mt")]
-position = Vector2(-1, 0)
+[node name="Level1" parent="." instance=ExtResource("2_604mt")]
 climbable_height = 50
 time_before_initial_fire = 3.0
 time_between_fires = 15.0

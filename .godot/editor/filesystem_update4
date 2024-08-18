@@ -16,3 +16,13 @@ res://UI/tutorial/tutorial.tscn
 res://UI/menu/play_button.gd
 res://UI/menu/main_menu.tscn
 res://UI/tutorial/tutorial_button_continue.gd
+res://groups.gd
+res://game.gd
+res://UI/temp_continue_button.gd
+res://UI/approval_bar/approval_bar.gd
+res://UI/climbing_progress_bar/climbing_progress_bar.gd
+res://UI/build_on_choice/build_on_choice.tscn
+res://UI/build_on/build_on_choice.tscn
+res://UI/build_on/build_on_interactable.tscn
+res://UI/build_on/build_on_interactable.gd
+res://UI/build_on/build_on_choice_screen.tscn
