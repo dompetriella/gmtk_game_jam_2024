@@ -6,3 +6,4 @@ res://tile_map_generator/tile_map_generator.tscn
 res://entity/player/player.tscn
 res://tile_map_generator/hazard.tscn
 res://level/ranger_station.tscn
+res://entity/player/player.gd
