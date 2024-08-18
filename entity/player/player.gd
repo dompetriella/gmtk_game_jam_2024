@@ -19,11 +19,15 @@ var is_watering: bool = false;
 var current_energy: float = energy_capacity;
 var in_cutscene: bool = false;
 
+var speed_multiplier = 5;
+
 func _ready() -> void:
+	#self.global_position = Vector2(-64, -4)
 	self.global_position = Vector2(16 * 9, -16);
 	water_particles.emitting = false;
 	Events.player_takes_energy_damage.connect(func(energy_damage):
-		current_energy = current_energy - (energy_damage / (500-energy_usage_rate));
+		if (!in_cutscene):
+			current_energy = current_energy - (energy_damage / (500-energy_usage_rate));
 	);
 	Events.player_enter_cutscene.connect(_handle_cutscene)
 	Events.player_exit_cutscene.connect(func():
@@ -38,9 +42,7 @@ func _process(delta: float):
 		_handle_watering();
 	#print(self.global_position);
 	
-func _handle_cutscene(cutscene_type: Enums.cutscene_type):
-	if (cutscene_type == Enums.cutscene_type.CLIMB_UP):
-		
+
 	
 func _handle_watering():
 		if Input.is_action_pressed("ui_select"):
@@ -71,7 +73,7 @@ func move_and_animate(delta: float):
 	if direction != Vector2.ZERO:
 		Events.player_takes_energy_damage.emit(energy_usage_while_climbing);
 		# Move the character
-		velocity = direction * speed 
+		velocity = direction * speed * speed_multiplier;
 		move_and_slide();
 
 		# Play the animation
@@ -80,6 +82,21 @@ func move_and_animate(delta: float):
 	else:
 		Events.player_takes_energy_damage.emit(energy_usage_while_still);
 		player_sprite.pause();
+		
+func _handle_cutscene(cutscene_type: Enums.cutscene_type):
+	self.in_cutscene = true;
+	if (cutscene_type == Enums.cutscene_type.CLIMB_UP):
+		var tile_generator: TileMapGenerator = get_tree().get_first_node_in_group(NodeGroups.tile_generator);
+		player_sprite.play("move");
+		var next_position: Vector2 = Vector2((tile_generator.climbable_width * Globals.pixel_size / 2), ( -1 * tile_generator.climbable_height * Globals.pixel_size));
+		
+		var movement_tween: Tween = create_tween();
+		print("current position: " + str(self.global_position) );
+		print("moving to: " + str(next_position) + "\n");
+		movement_tween.tween_property(self, "global_position", next_position, (0.75)).from_current();
+		movement_tween.tween_callback(func(): 
+			player_sprite.stop();
+		);	
 
 func _on_water_nozzle_area_area_entered(area: Area2D) -> void:
 	if (area is Hazard && is_watering):

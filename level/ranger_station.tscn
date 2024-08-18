@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwhb160jml156"]
+
+[ext_resource type="Texture2D" uid="uid://hu0p3kpn1k7c" path="res://icon.svg" id="1_2tw3x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4g3u0"]
+size = Vector2(20, 128)
+
+[node name="RangerStation" type="Area2D"]
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_2tw3x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-18, 0)
+shape = SubResource("RectangleShape2D_4g3u0")
