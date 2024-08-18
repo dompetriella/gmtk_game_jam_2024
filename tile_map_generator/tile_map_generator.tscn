@@ -6,7 +6,7 @@
 [node name="TileMapGenerator" type="Node2D" groups=["TileGenerator"]]
 script = ExtResource("1_nd0ud")
 
-[node name="HazardGenerator" type="Node2D" parent="."]
+[node name="HazardGenerator" type="Node2D" parent="." groups=["HazardGenerator"]]
 unique_name_in_owner = true
 z_index = 1
 script = ExtResource("2_c063j")

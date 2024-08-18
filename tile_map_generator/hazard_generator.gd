@@ -37,6 +37,8 @@ func _generate_area_2d_hazard_base_layer():
 		hazard.z_index = 1;
 		hazard.hazard_list_index = x;
 		hazard.hazard_coordinate = Vector2(x_coordinate, y_coordinate);
+		if (y_coordinate == base_size.y-1):
+			hazard.is_finishing_tile = true;
 		hazard_list.append(hazard);
 		self.add_child(hazard);
 	

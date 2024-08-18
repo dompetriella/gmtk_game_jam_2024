@@ -8,6 +8,7 @@ enum HazardType {FIRE, BRAMBLE, ENEMY}
 var hazard_list_index: int;
 var hazard_coordinate: Vector2;
 var is_on_fire: bool = false;
+var is_finishing_tile: bool = false;
 
 func _ready():
 	Events.dowse_hazard_tile.connect(_dowse_hazard_tile);
@@ -33,3 +34,5 @@ func _on_body_entered(body: Node2D) -> void:
 		print('ouch!');
 		var multiplier: float = body.energy_usage_rate;
 		Events.player_takes_energy_damage.emit(50 * multiplier);
+	if (body is Player && is_finishing_tile):
+		Events.player_enter_cutscene.emit(Enums.cutscene_type.CLIMB_UP);

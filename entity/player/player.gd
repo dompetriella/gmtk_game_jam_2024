@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 
 @export var speed = 300.0;
+
 @export var energy_capacity: float = 1000; 
 @export var energy_usage_while_climbing: float = 8;
 @export var energy_usage_while_still: float = 2;
@@ -16,6 +17,7 @@ extends CharacterBody2D
 var direction: Vector2 = Vector2.ZERO
 var is_watering: bool = false;
 var current_energy: float = energy_capacity;
+var in_cutscene: bool = false;
 
 func _ready() -> void:
 	self.global_position = Vector2(16 * 9, -16);
@@ -23,11 +25,22 @@ func _ready() -> void:
 	Events.player_takes_energy_damage.connect(func(energy_damage):
 		current_energy = current_energy - (energy_damage / (500-energy_usage_rate));
 	);
+	Events.player_enter_cutscene.connect(_handle_cutscene)
+	Events.player_exit_cutscene.connect(func():
+		in_cutscene = false;	
+	)
 
 func _process(delta: float):
-	handle_input();
-	move_and_animate(delta);
-	_handle_watering();
+	
+	if (!in_cutscene):
+		handle_input();
+		move_and_animate(delta);
+		_handle_watering();
+	#print(self.global_position);
+	
+func _handle_cutscene(cutscene_type: Enums.cutscene_type):
+	if (cutscene_type == Enums.cutscene_type.CLIMB_UP):
+		
 	
 func _handle_watering():
 		if Input.is_action_pressed("ui_select"):
@@ -58,7 +71,7 @@ func move_and_animate(delta: float):
 	if direction != Vector2.ZERO:
 		Events.player_takes_energy_damage.emit(energy_usage_while_climbing);
 		# Move the character
-		velocity = direction * speed
+		velocity = direction * speed 
 		move_and_slide();
 
 		# Play the animation

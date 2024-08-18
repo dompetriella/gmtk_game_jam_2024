@@ -5,11 +5,10 @@ res://game.tscn
 res://tile_map_generator/tile_map_generator.tscn
 res://entity/player/player.tscn
 res://tile_map_generator/hazard.tscn
-res://level/left_barrier.gd
 res://entity/player/player.gd
-res://bottom_barrier.gd
-res://entity/player/energy_bar.gd
-res://tile_map_generator/hazard.gd
-res://globals.gd
+res://UI/approval_bar/approval_bar.gd
 res://groups.gd
-res://UI/climbing_progress_bar/climbing_progress_bar.gd
+res://tile_map_generator/hazard.gd
+res://tile_map_generator/hazard_generator.gd
+res://events.gd
+res://enums.gd

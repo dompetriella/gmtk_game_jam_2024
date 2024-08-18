@@ -1,5 +1,6 @@
-res://UI/climbing_progress_bar
 res://
+res://UI/approval_bar
+res://UI/climbing_progress_bar
 res://level
 res://assets/sprites/resources
 res://assets/sprites/exports

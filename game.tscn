@@ -21,6 +21,10 @@ time_between_fire_spread = 10.0
 
 [node name="Player" parent="." instance=ExtResource("1_ca313")]
 speed = 40.0
+energy_capacity = null
+energy_usage_while_climbing = null
+energy_usage_while_still = null
+energy_usage_while_dowsing = null
 
 [node name="LeftBarrier" type="StaticBody2D" parent="."]
 script = ExtResource("3_ksnpd")
