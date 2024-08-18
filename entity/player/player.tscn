@@ -103,4 +103,43 @@ amount = 250
 process_material = SubResource("ParticleProcessMaterial_src6n")
 lifetime = 0.18
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ApprovalBar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 16.0
+offset_top = 384.0
+offset_right = 64.0
+offset_bottom = 600.0
+
+[node name="EnergyBar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 80.0
+offset_top = 384.0
+offset_right = 128.0
+offset_bottom = 600.0
+value = 100.0
+
+[node name="ApprovalLabel" type="Label" parent="CanvasLayer"]
+offset_left = 16.0
+offset_top = 608.0
+offset_right = 64.0
+offset_bottom = 631.0
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnergyLabel" type="Label" parent="CanvasLayer"]
+offset_left = 80.0
+offset_top = 608.0
+offset_right = 128.0
+offset_bottom = 631.0
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 128.0
+offset_top = 8.0
+offset_right = 1024.0
+offset_bottom = 35.0
+
 [connection signal="area_entered" from="WaterNozzleArea" to="." method="_on_water_nozzle_area_area_entered"]

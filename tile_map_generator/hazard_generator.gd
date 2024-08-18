@@ -78,9 +78,8 @@ func _get_area_neighbors(current_tile: Vector2) -> Array[Hazard]:
 			hazard.hazard_coordinate == Vector2(current_tile.x, current_tile.y - 1) || 
 			#down
 			hazard.hazard_coordinate == Vector2(current_tile.x, current_tile.y + 1)):
-				if (hazard.hazard_coordinate.y > 2 && hazard.hazard_coordinate.y < base_size.y - 2):
+				if (hazard.hazard_coordinate.y > 2 && hazard.hazard_coordinate.y < base_size.y - 1):
 					hazard_tiles.append(hazard);
-					print('Found neighbor ' + hazard.name);
 	return hazard_tiles;
 
 func _add_fire_timer_to_neighbors(neighbor: Hazard, old_timer: float) -> void:

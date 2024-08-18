@@ -9,7 +9,7 @@ extends Node2D
 
 @onready var fire_timer: Timer = $FireTimer
 
-var tile_set = preload("res://assets/sprites/resources/ranger_tile_set.tres");
+var tile_set = preload("res://assets/sprites/resources/ranger_tile_set_edit.tres");
 
 
 func _ready() -> void:
@@ -37,21 +37,23 @@ func _generate_tiles():
 			elif (y == 0):
 				if (x == climbable_width-1):
 					#bottom right corner
-					tile_map.set_cell(Vector2i(x, -y), 0, Vector2i(5, 5));
+					tile_map.set_cell(Vector2i(x, -y), 0, Vector2i(9, 5));
 				else:
 					#bottom edge
-					tile_map.set_cell(Vector2i(x, -y), 0, Vector2i(randi() % 4 + 1, 5));
+					tile_map.set_cell(Vector2i(x, -y), 0, Vector2i(randi() % 8 + 1, 5));
 			elif (x == climbable_width - 1):
 				if (y == climbable_height-1):
 					#top right corner
-					tile_map.set_cell(Vector2i(x, -y), 0, Vector2i(5, 0));
+					tile_map.set_cell(Vector2i(x, -y), 0, Vector2i(9, 0));
 				else:
 					#right wall
-					tile_map.set_cell(Vector2i(x, -y), 0, Vector2i(5, randi() % 4 + 1));
+					tile_map.set_cell(Vector2i(x, -y), 0, Vector2i(9, randi() % 4 + 1));
 			elif (y == climbable_height -1):
 				#top edge
-				tile_map.set_cell(Vector2i(x, -y), 0, Vector2i(randi() % 4 + 1, 0));
+				tile_map.set_cell(Vector2i(x, -y), 0, Vector2i(randi() % 8 + 1, 0));
 			else:
 				#center
-				tile_map.set_cell(Vector2i(x, -y), 0, Vector2i(randi() % 4 + 1, randi() % 4 + 1));
+				tile_map.set_cell(Vector2i(x, -y), 0, Vector2i(randi() % 8 + 1, randi() % 4 + 1));
 	self.get_parent().add_child(tile_map);
+	
+	

@@ -1,9 +1,9 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dyli372o8fpu4"]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://b6akmbadi4sw"]
 
-[ext_resource type="Texture2D" uid="uid://dnven6akrgib6" path="res://assets/sprites/exports/9slice_roboranger_toscale_edit.png" id="1_g4mt6"]
+[ext_resource type="Texture2D" uid="uid://dnven6akrgib6" path="res://assets/sprites/exports/9slice_roboranger_toscale_edit.png" id="1_1tprh"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dc7re"]
-texture = ExtResource("1_g4mt6")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_63b55"]
+texture = ExtResource("1_1tprh")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -66,4 +66,4 @@ texture = ExtResource("1_g4mt6")
 9:5/0 = 0
 
 [resource]
-sources/1 = SubResource("TileSetAtlasSource_dc7re")
+sources/0 = SubResource("TileSetAtlasSource_63b55")

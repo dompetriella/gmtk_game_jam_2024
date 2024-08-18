@@ -1,15 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://bev2k05fe3j12"]
+[gd_scene load_steps=4 format=3 uid="uid://bev2k05fe3j12"]
 
 [ext_resource type="PackedScene" uid="uid://cnsdp5mjeacsh" path="res://entity/player/player.tscn" id="1_ca313"]
 [ext_resource type="PackedScene" uid="uid://bnqrijhnq5a3b" path="res://tile_map_generator/tile_map_generator.tscn" id="2_604mt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xba74"]
+size = Vector2(16, 129.25)
 
 [node name="Game" type="Node2D"]
 
 [node name="TileMapGenerator" parent="." instance=ExtResource("2_604mt")]
 position = Vector2(-1, 0)
-climbable_height = 20
+climbable_height = 50
 time_before_initial_fire = 3.0
-time_between_fire_spread = 8.0
+time_between_fires = 15.0
+time_between_fire_spread = 10.0
 
 [node name="Player" parent="." instance=ExtResource("1_ca313")]
 speed = 40.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-16, -64.625)
+shape = SubResource("RectangleShape2D_xba74")

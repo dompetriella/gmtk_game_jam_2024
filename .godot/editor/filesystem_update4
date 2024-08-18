@@ -10,3 +10,7 @@ res://tile_map_generator/hazard.gd
 res://globals.gd
 res://entity/player/player.gd
 res://events.gd
+res://assets/sprites/resources/ranger_tile_set.tres
+res://level_utility/barrier/barrier.tscn
+res://level_utility/barrier/barrier.gd
+res://level/left_barrier.gd
