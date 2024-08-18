@@ -8,7 +8,7 @@ extends Node2D
 var base_size: Vector2;
 var tile_map: TileMapLayer
 var hazard_scene: PackedScene = preload("res://tile_map_generator/hazard.tscn");
-var fire_animated_sprite = preload("res://assets/sprites/test/fire.tres");
+var fire_animated_sprite = preload("res://assets/sprites/resources/fire.tres");
 var hazard_list: Array[Hazard] = [];
 var time_before_initial_fire: float;
 var time_between_fires: float;

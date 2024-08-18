@@ -1,11 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://cnsdp5mjeacsh"]
+[gd_scene load_steps=15 format=3 uid="uid://cnsdp5mjeacsh"]
 
 [ext_resource type="Script" path="res://entity/player/player.gd" id="1_oktdr"]
 [ext_resource type="Texture2D" uid="uid://bj31p1mdabkn1" path="res://assets/sprites/exports/player-sprite.png" id="2_y5ko5"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rli6t"]
-radius = 6.0
-height = 15.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hcacc"]
 atlas = ExtResource("2_y5ko5")
@@ -57,10 +53,34 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rli6t"]
+radius = 4.0
+height = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pnxvi"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4ae2x"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+
+[sub_resource type="Gradient" id="Gradient_0i8qp"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7unqg"]
+gradient = SubResource("Gradient_0i8qp")
+fill = 1
+fill_from = Vector2(0.5, 0.504274)
+fill_to = Vector2(0.867521, 0.115385)
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 99
 script = ExtResource("1_oktdr")
 speed = 25.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_5768q")
+animation = &"move"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_rli6t")
@@ -68,7 +88,23 @@ shape = SubResource("CapsuleShape2D_rli6t")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(5, 5)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.75, 0.75)
-sprite_frames = SubResource("SpriteFrames_5768q")
-animation = &"move"
+[node name="WaterNozzleArea" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WaterNozzleArea"]
+position = Vector2(0, -24)
+shape = SubResource("CircleShape2D_pnxvi")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="WaterNozzleArea"]
+position = Vector2(0, -25)
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_4ae2x")
+lifetime = 109.33
+
+[node name="Sprite2D" type="Sprite2D" parent="WaterNozzleArea"]
+position = Vector2(-4.76837e-07, -24)
+scale = Vector2(0.3125, 0.3125)
+texture = SubResource("GradientTexture2D_7unqg")
+
+[connection signal="area_entered" from="WaterNozzleArea" to="." method="_on_water_nozzle_area_area_entered"]
