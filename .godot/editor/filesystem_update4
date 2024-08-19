@@ -27,3 +27,5 @@ res://UI/build_on/build_on_interactable.tscn
 res://UI/build_on/build_on_interactable.gd
 res://UI/build_on/build_on_choice_screen.tscn
 res://UI/menu/fire_particles_menu.tres
+res://assets/sprites/test/new_tile_set.tres
+res://UI/player_ui/player_ui.gd

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cnsdp5mjeacsh"]
+[gd_scene load_steps=28 format=3 uid="uid://cnsdp5mjeacsh"]
 
 [ext_resource type="Script" path="res://entity/player/player.gd" id="1_oktdr"]
 [ext_resource type="Texture2D" uid="uid://bj31p1mdabkn1" path="res://assets/sprites/exports/player-sprite.png" id="2_y5ko5"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://b25d01xvrnc24" path="res://assets/sprites/exports/player-victory-sprite.png" id="3_m7srq"]
 [ext_resource type="Script" path="res://UI/climbing_progress_bar/climbing_progress_bar.gd" id="4_7br2w"]
 [ext_resource type="Texture2D" uid="uid://ctnwo3jxt8aol" path="res://assets/sprites/exports/player-walk-sprite.png" id="4_ttb8r"]
+[ext_resource type="Script" path="res://UI/player_ui/player_ui.gd" id="5_v6gly"]
+[ext_resource type="Texture2D" uid="uid://b5x88notnfho2" path="res://assets/sprites/exports/mountain_icon_roboranger_toscale.png" id="7_b4qay"]
 [ext_resource type="PackedScene" uid="uid://dwf38ith8shuu" path="res://level/fade_transition.tscn" id="8_baxod"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_shtn1"]
@@ -179,6 +181,7 @@ process_material = SubResource("ParticleProcessMaterial_src6n")
 lifetime = 0.18
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("5_v6gly")
 
 [node name="ApprovalBar" type="ProgressBar" parent="CanvasLayer"]
 offset_left = 80.0
@@ -189,6 +192,14 @@ value = 100.0
 fill_mode = 3
 script = ExtResource("3_kejnb")
 
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ApprovalBar"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 248.0
+offset_right = 40.0
+offset_bottom = 280.0
+texture = ExtResource("7_b4qay")
+
 [node name="EnergyBar" type="ProgressBar" parent="CanvasLayer"]
 offset_left = 80.0
 offset_top = 336.0
@@ -198,23 +209,13 @@ value = 100.0
 fill_mode = 3
 script = ExtResource("3_8hren")
 
-[node name="ApprovalLabel" type="Label" parent="CanvasLayer"]
-offset_left = 72.0
-offset_top = 280.0
-offset_right = 136.0
-offset_bottom = 303.0
-text = "A"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="EnergyLabel" type="Label" parent="CanvasLayer"]
-offset_left = 72.0
-offset_top = 584.0
-offset_right = 136.0
-offset_bottom = 607.0
-text = "E"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/EnergyBar"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 248.0
+offset_right = 40.0
+offset_bottom = 280.0
+texture = ExtResource("7_b4qay")
 
 [node name="ClimbingProgressBar" type="ProgressBar" parent="CanvasLayer"]
 offset_left = 16.0
@@ -224,6 +225,18 @@ offset_bottom = 608.0
 fill_mode = 3
 script = ExtResource("4_7br2w")
 
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ClimbingProgressBar"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = -16.0
+offset_right = 40.0
+offset_bottom = 16.0
+texture = ExtResource("7_b4qay")
+
 [node name="Fade" parent="CanvasLayer" instance=ExtResource("8_baxod")]
+offset_left = -8.0
+offset_top = 0.0
+offset_right = 1184.0
+offset_bottom = 672.0
 
 [connection signal="area_entered" from="WaterNozzleArea" to="." method="_on_water_nozzle_area_area_entered"]
