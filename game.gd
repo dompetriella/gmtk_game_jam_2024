@@ -30,7 +30,7 @@ func _ready() -> void:
 	Events.build_new_level.connect(_generate_next_level);
 
 func _generate_next_level():
-	Globals.current_level += 1;
+	print('current level ' + str(Globals.current_level));
 	var game_children: Array[Node] = self.get_children();
 	for child in game_children:
 		if (child is TileMapGenerator):
@@ -66,7 +66,7 @@ func _generate_next_level():
 			new_level.name = "Level 4";	
 			new_level.modulate = Color.BLUE;
 		5:
-			new_level.climbable_height = level3_height;
+			new_level.climbable_height = level5_height;
 			new_level.time_before_initial_fire = level5_time_before_initial_fire;
 			
 			new_level.time_between_fires = level5_time_between_fires;

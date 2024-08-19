@@ -96,7 +96,7 @@ func _handle_cutscene(cutscene_type: Enums.cutscene_type):
 		var next_position: Vector2 = Vector2((tile_generator.climbable_width * Globals.pixel_size / 2), ( -1 * tile_generator.climbable_height * Globals.pixel_size) - 4);
 		
 		var move_to_top_time: float = 0.75;
-		var move_to_ranger_station_time: float = 5;
+		var move_to_ranger_station_time: float = 2;
 		var time_buffer: float = 0.25;
 		var victory_time: float = 8;
 		var wait_until_build_ons_shown: float = 2.5;
@@ -108,7 +108,7 @@ func _handle_cutscene(cutscene_type: Enums.cutscene_type):
 		await get_tree().create_timer(move_to_top_time).timeout;
 		player_sprite.stop();
 		movement_tween.stop();
-		await get_tree().create_timer(0.8).timeout;
+		await get_tree().create_timer(0.2).timeout;
 		player_sprite.play("victory");
 		await get_tree().create_timer(5).timeout;
 		next_position = Vector2(self.global_position.x + (Globals.pixel_size*5) , self.global_position.y)
@@ -123,9 +123,32 @@ func _handle_cutscene(cutscene_type: Enums.cutscene_type):
 		player_sprite.stop();
 		
 		await get_tree().create_timer(wait_until_build_ons_shown).timeout;
-		Events.build_new_level.emit();
 		Events.show_build_on_options.emit();
 		Events.reset_player_to_origin.emit();
+		
+	if (cutscene_type == Enums.cutscene_type.LEAVE_STATION):
+		self.in_cutscene = true;
+		Events.set_station_to_back.emit();
+		var tile_generator: TileMapGenerator = get_tree().get_first_node_in_group(NodeGroups.tile_generator);
+		
+		Events.fade_from_black.emit();
+		player_sprite.play("walk");
+		var next_position: Vector2 = Vector2((tile_generator.climbable_width * Globals.pixel_size / 2), self.global_position.y);
+		
+		var walk_time: float = 2;
+		var pause_time: float = 0.25;
+		
+		var movement_tween: Tween = create_tween();
+		print("current position: " + str(self.global_position) );
+		print("moving to: " + str(next_position) + "\n");
+		movement_tween.tween_property(self, "global_position", next_position, (walk_time)).from_current();
+		await get_tree().create_timer(walk_time).timeout;
+		await get_tree().create_timer(pause_time).timeout;
+		movement_tween.stop();
+		player_sprite.play("default");
+		Events.set_station_to_front.emit();
+		self.in_cutscene = false;
+		
 		
 
 func _on_reset_player_to_ranger_station():
