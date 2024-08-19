@@ -20,7 +20,7 @@ var is_watering: bool = false;
 var current_energy: float = energy_capacity;
 var in_cutscene: bool = false;
 
-var speed_multiplier = 1;
+var speed_multiplier = 10;
 
 func _ready() -> void:
 	#self.global_position = Vector2(-64, -4)
@@ -159,6 +159,7 @@ func _handle_cutscene(cutscene_type: Enums.cutscene_type):
 		player_sprite.play("default");
 		player_sprite.stop();
 		Events.set_station_to_front.emit();
+		Events.start_fires.emit();
 		self.in_cutscene = false;
 		
 		

@@ -18,7 +18,7 @@ var time_between_spreading_fire: float;
 
 func _ready() -> void:
 	self.call_deferred("_generate_area_2d_hazard_base_layer");
-	
+	Events.start_fires.connect(_turn_on_fire_timers);
 	
 	base_size = Vector2(tile_map_generator.climbable_width, tile_map_generator.climbable_height);
 	time_before_initial_fire = tile_map_generator.time_before_initial_fire;
@@ -29,7 +29,7 @@ func _ready() -> void:
 
 func _turn_on_fire_timers():
 	fire_timer.start();
-	fire_seed_timer.star();
+	fire_seed_timer.start();
 
 func _generate_area_2d_hazard_base_layer():
 	var total: int = base_size.x * base_size.y;

@@ -13,3 +13,7 @@ func _process(delta: float) -> void:
 			if (hazard_children.is_on_fire):
 				current_meter += 1;
 		self.value = max_value - current_meter;
+	
+	if (self.value <= 0):
+		Globals.current_level = 1;
+		get_tree().change_scene_to_file("res://UI/game_over/game_over.tscn");

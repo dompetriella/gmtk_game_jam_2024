@@ -110,3 +110,7 @@ func _generate_next_level():
 	self.remove_child(tile_generator);
 	tile_generator.queue_free();
 	self.add_child(new_level);
+
+
+func _on_timer_timeout() -> void:
+	Events.start_fires.emit();

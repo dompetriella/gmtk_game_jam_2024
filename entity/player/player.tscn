@@ -135,16 +135,19 @@ radius = 6.0
 height = 22.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pnxvi"]
+radius = 15.0
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_src6n"]
 particle_flag_disable_z = true
 emission_shape = 2
 emission_sphere_radius = 1.0
+angle_min = 1.07288e-05
+angle_max = 346.3
 direction = Vector3(0, -1, 0)
-spread = 38.473
+spread = 53.318
 flatness = 0.875
-initial_velocity_min = 85.19
-initial_velocity_max = 122.23
+initial_velocity_min = 110.07
+initial_velocity_max = 147.11
 gravity = Vector3(0, -50, 0)
 linear_accel_min = -58.52
 linear_accel_max = -2.23517e-06
@@ -172,12 +175,11 @@ limit_bottom = 32
 [node name="WaterNozzleArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WaterNozzleArea"]
-position = Vector2(0, -24)
+position = Vector2(0, -29)
 shape = SubResource("CircleShape2D_pnxvi")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="WaterNozzleArea"]
 position = Vector2(0, -13)
-emitting = false
 amount = 250
 process_material = SubResource("ParticleProcessMaterial_src6n")
 lifetime = 0.18

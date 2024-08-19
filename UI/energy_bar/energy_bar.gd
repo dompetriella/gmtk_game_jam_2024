@@ -11,3 +11,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	self.value = player.current_energy;
+
+	if (self.value <= 0):
+		Globals.current_level = 1;
+		get_tree().change_scene_to_file("res://UI/game_over/game_over.tscn");
