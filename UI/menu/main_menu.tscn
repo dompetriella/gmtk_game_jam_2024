@@ -1,28 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4x5t3gg3mvxe"]
+[gd_scene load_steps=3 format=3 uid="uid://b4x5t3gg3mvxe"]
 
+[ext_resource type="Texture2D" uid="uid://bll4jiyo116se" path="res://assets/sprites/exports/moutain_bg_roboranger_large.png" id="1_k4l6a"]
 [ext_resource type="Script" path="res://UI/menu/play_button.gd" id="1_sifev"]
-
-[sub_resource type="Gradient" id="Gradient_qalf2"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_y876s"]
-gradient = SubResource("Gradient_qalf2")
-fill_from = Vector2(0.502294, 0)
-fill_to = Vector2(0.529817, 1)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1174.0
-offset_bottom = 653.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -250.0
+offset_bottom = 254.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_y876s")
+texture = ExtResource("1_k4l6a")
+expand_mode = 4
+stretch_mode = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TextureRect"]
 custom_minimum_size = Vector2(400, 0)
@@ -31,8 +31,10 @@ anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -100.0
-offset_right = 100.0
+offset_left = -200.0
+offset_top = 258.0
+offset_right = 200.0
+offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -53,5 +55,19 @@ theme_override_constants/margin_bottom = 0
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 text = "Settings"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 1152.0
+offset_bottom = 288.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 80
+text = "FIRE RESCUE 
+ROBO RANGER"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="TextureRect/VBoxContainer/PlayButton" to="TextureRect/VBoxContainer/PlayButton" method="_on_pressed"]
