@@ -1,9 +1,9 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1724106613
+::res://::1724109544
 button_text.tres::FontVariation::655851686705023730::1724106009::0::1::::<><>::uid://t6tfbs8a4wyy::::res://assets/fonts/Minecraft.ttf
 enums.gd::GDScript::-1::1724105944::0::1::::<>Node<>::
 events.gd::GDScript::-1::1724105944::0::1::::<>Node<>::
-export_presets.cfg::TextFile::-1::1724106512::0::1::::<><>::
+export_presets.cfg::TextFile::-1::1724106613::0::1::::<><>::
 game.gd::GDScript::-1::1724106296::0::1::::<>Node2D<>::
 game.tscn::PackedScene::2712186567485749747::1724105944::0::1::::<><>::uid://cnsdp5mjeacsh::::res://entity/player/player.tscn<>res://game.gd<>uid://cjs71kch0qc8h::::res://assets/sprites/exports/moutain_bg_roboranger_toscale.png<>uid://bnqrijhnq5a3b::::res://tile_map_generator/tile_map_generator.tscn<>res://level/left_barrier.gd<>uid://b6akmbadi4sw::::res://assets/sprites/resources/ranger_tile_set_edit.tres<>uid://cwhb160jml156::::res://level/ranger_station.tscn<>res://level/ranger_station.gd
 globals.gd::GDScript::-1::1724105944::0::1::::<>Node<>::
@@ -11,9 +11,11 @@ groups.gd::GDScript::-1::1724018188::0::1::::NodeGroups<>RefCounted<>::
 icon.svg::CompressedTexture2D::534155659076943722::1723915317::1724106573::1::::<><>::
 main.tscn::PackedScene::1310351578232940692::1724044823::0::1::::<><>::uid://b4x5t3gg3mvxe::::res://UI/menu/main_menu.tscn<>uid://cg46eeh1jbx38::::res://UI/menu/fire_particles_menu.tres
 README.md::TextFile::-1::1723915317::0::1::::<><>::
-::res://assets/::1724105944
+::res://assets/::1724109555
 ::res://assets/fonts/::1724106573
 Minecraft.ttf::FontFile::1398746373160920360::1724031275::1724106573::1::::<><>::
+::res://assets/music/::1724109586
+victory_jingle.mp3::AudioStreamMP3::4524488163828604074::1724109586::1724109586::1::::<><>::
 ::res://assets/sprites/::1724105944
 ::res://assets/sprites/exports/::1724106573
 9slice_roboranger_toscale_edit.png::CompressedTexture2D::8115336663201980513::1723948478::1724106573::1::::<><>::
@@ -124,7 +126,7 @@ tutorial_button_continue.gd::GDScript::-1::1724105944::0::1::::<>TextureButton<>
 ::res://UI/victory_screen/::1724044824
 restart_game_button.gd::GDScript::-1::1724044502::0::1::::<>Button<>::
 victory_screen.tscn::PackedScene::6560404832967915082::1724044824::0::1::::<><>::uid://djxnhqln6vbo6::::res://assets/sprites/exports/splash-screen.png<>uid://t6tfbs8a4wyy::::res://assets/fonts/Minecraft.ttf<>res://UI/victory_screen/restart_game_button.gd
-::res://web/::1724106640
+::res://web/::1724107206
 index.apple-touch-icon.png::CompressedTexture2D::7629677801577656835::1724106613::1724107206::1::::<><>::
 index.icon.png::CompressedTexture2D::8047617038359169990::1724106613::1724107206::1::::<><>::
 index.png::CompressedTexture2D::4699324525035083497::1724106613::1724107206::1::::<><>::
