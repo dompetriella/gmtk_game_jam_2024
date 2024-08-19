@@ -14,7 +14,6 @@ extends CharacterBody2D
 @onready var water_nozzle_area: Area2D = $WaterNozzleArea
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var water_particles: GPUParticles2D = $WaterNozzleArea/GPUParticles2D
-@onready var temp_continue_button: Button = $CanvasLayer/TempContinueButton
 
 var direction: Vector2 = Vector2.ZERO
 var is_watering: bool = false;
@@ -32,13 +31,11 @@ func _ready() -> void:
 			current_energy = current_energy - (energy_damage / (500-energy_usage_rate));
 	);
 	Events.player_enter_cutscene.connect(_handle_cutscene)
-	Events.show_build_on_options.connect(_on_show_build_on_options);
+	#Events.show_build_on_options.connect(_on_show_build_on_options);
 	Events.player_exit_cutscene.connect(func():
 		in_cutscene = false;	
 	)
 
-func _on_show_build_on_options():
-	temp_continue_button.visible = true;
 
 func _process(delta: float):
 	

@@ -26,3 +26,4 @@ res://UI/build_on/build_on_choice.tscn
 res://UI/build_on/build_on_interactable.tscn
 res://UI/build_on/build_on_interactable.gd
 res://UI/build_on/build_on_choice_screen.tscn
+res://UI/menu/fire_particles_menu.tres
