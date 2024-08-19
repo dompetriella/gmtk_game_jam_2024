@@ -3,25 +3,25 @@ extends Node2D
 var tile_generator: TileMapGenerator;
 const tile_map_generator = preload("res://tile_map_generator/tile_map_generator.tscn")
 
-var level2_height: int = 100;
+var level2_height: int = 150;
 var level2_time_before_initial_fire: float = 3;
 var level2_time_between_fires: float = 15;
 var level2_time_between_fire_spread: float = 10;
 
 
-var level3_height: int = 100;
+var level3_height: int = 200;
 var level3_time_before_initial_fire: float = 3;
 var level3_time_between_fires: float = 15;
 var level3_time_between_fire_spread: float = 10;
 
 
-var level4_height: int = 100;
+var level4_height: int = 250;
 var level4_time_before_initial_fire: float = 3;
 var level4_time_between_fires: float = 15;
 var level4_time_between_fire_spread: float = 10;
 
 
-var level5_height: int = 100;
+var level5_height: int = 300;
 var level5_time_before_initial_fire: float = 3;
 var level5_time_between_fires: float = 15;
 var level5_time_between_fire_spread: float = 10;

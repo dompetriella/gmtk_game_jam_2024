@@ -28,7 +28,7 @@ position = Vector2(0, -96)
 texture = ExtResource("2_7iwcj")
 
 [node name="Level1" parent="." instance=ExtResource("2_604mt")]
-climbable_height = 300
+climbable_height = 100
 time_before_initial_fire = 3.0
 time_between_fires = 15.0
 time_between_fire_spread = 10.0
