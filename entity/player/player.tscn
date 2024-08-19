@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cnsdp5mjeacsh"]
+[gd_scene load_steps=30 format=3 uid="uid://cnsdp5mjeacsh"]
 
 [ext_resource type="Script" path="res://entity/player/player.gd" id="1_oktdr"]
 [ext_resource type="Texture2D" uid="uid://bj31p1mdabkn1" path="res://assets/sprites/exports/player-sprite.png" id="2_y5ko5"]
@@ -8,8 +8,10 @@
 [ext_resource type="Script" path="res://UI/climbing_progress_bar/climbing_progress_bar.gd" id="4_7br2w"]
 [ext_resource type="Texture2D" uid="uid://ctnwo3jxt8aol" path="res://assets/sprites/exports/player-walk-sprite.png" id="4_ttb8r"]
 [ext_resource type="Script" path="res://UI/player_ui/player_ui.gd" id="5_v6gly"]
+[ext_resource type="Texture2D" uid="uid://dlem0bm6vlaur" path="res://assets/sprites/exports/approval.png" id="7_2e3ud"]
 [ext_resource type="Texture2D" uid="uid://b5x88notnfho2" path="res://assets/sprites/exports/mountain_icon_roboranger_toscale.png" id="7_b4qay"]
 [ext_resource type="PackedScene" uid="uid://dwf38ith8shuu" path="res://level/fade_transition.tscn" id="8_baxod"]
+[ext_resource type="Texture2D" uid="uid://byqu3ayp66rpx" path="res://assets/sprites/exports/energy_icon_roboranger_toscale.png" id="9_aed1f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_shtn1"]
 atlas = ExtResource("2_y5ko5")
@@ -153,6 +155,10 @@ hue_variation_max = 0.03
 z_index = 99
 script = ExtResource("1_oktdr")
 speed = 25.0
+energy_capacity = null
+energy_usage_while_climbing = null
+energy_usage_while_still = null
+energy_usage_while_dowsing = null
 energy_usage_rate = 200.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -194,11 +200,11 @@ script = ExtResource("3_kejnb")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/ApprovalBar"]
 layout_mode = 0
-offset_left = 8.0
-offset_top = 248.0
-offset_right = 40.0
-offset_bottom = 280.0
-texture = ExtResource("7_b4qay")
+offset_left = -4.0
+offset_top = 238.0
+offset_right = 53.0
+offset_bottom = 295.0
+texture = ExtResource("7_2e3ud")
 
 [node name="EnergyBar" type="ProgressBar" parent="CanvasLayer"]
 offset_left = 80.0
@@ -211,11 +217,11 @@ script = ExtResource("3_8hren")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/EnergyBar"]
 layout_mode = 0
-offset_left = 8.0
-offset_top = 248.0
-offset_right = 40.0
-offset_bottom = 280.0
-texture = ExtResource("7_b4qay")
+offset_left = -1.0
+offset_top = 239.0
+offset_right = 49.0
+offset_bottom = 298.0
+texture = ExtResource("9_aed1f")
 
 [node name="ClimbingProgressBar" type="ProgressBar" parent="CanvasLayer"]
 offset_left = 16.0
@@ -227,16 +233,15 @@ script = ExtResource("4_7br2w")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/ClimbingProgressBar"]
 layout_mode = 0
-offset_left = 8.0
-offset_top = -16.0
-offset_right = 40.0
-offset_bottom = 16.0
+offset_top = -29.0
+offset_right = 48.0
+offset_bottom = 33.0
 texture = ExtResource("7_b4qay")
 
 [node name="Fade" parent="CanvasLayer" instance=ExtResource("8_baxod")]
-offset_left = -8.0
-offset_top = 0.0
-offset_right = 1184.0
-offset_bottom = 672.0
+offset_left = -33.0
+offset_top = -20.0
+offset_right = 1159.0
+offset_bottom = 652.0
 
 [connection signal="area_entered" from="WaterNozzleArea" to="." method="_on_water_nozzle_area_area_entered"]

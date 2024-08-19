@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4x5t3gg3mvxe"]
+[gd_scene load_steps=4 format=3 uid="uid://b4x5t3gg3mvxe"]
 
 [ext_resource type="Texture2D" uid="uid://bll4jiyo116se" path="res://assets/sprites/exports/moutain_bg_roboranger_large.png" id="1_k4l6a"]
 [ext_resource type="Script" path="res://UI/menu/play_button.gd" id="1_sifev"]
+[ext_resource type="Texture2D" uid="uid://bek72vdwlhkg5" path="res://assets/sprites/exports/title-sprite.png" id="3_d58f4"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -56,18 +57,16 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 text = "Settings"
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_top = 40.0
-offset_right = 1152.0
-offset_bottom = 288.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(1, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 80
-text = "FIRE RESCUE 
-ROBO RANGER"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -480.0
+offset_top = 80.0
+offset_right = 480.0
+offset_bottom = 272.0
+grow_horizontal = 2
+texture = ExtResource("3_d58f4")
 
 [connection signal="pressed" from="TextureRect/VBoxContainer/PlayButton" to="TextureRect/VBoxContainer/PlayButton" method="_on_pressed"]

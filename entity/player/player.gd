@@ -35,6 +35,8 @@ func _ready() -> void:
 	Events.player_exit_cutscene.connect(func():
 		in_cutscene = false;	
 	)
+	Events.reset_player_to_origin.connect(_on_reset_player_to_origin);
+
 
 
 func _process(delta: float):
@@ -97,7 +99,7 @@ func _handle_cutscene(cutscene_type: Enums.cutscene_type):
 		var move_to_ranger_station_time: float = 5;
 		var time_buffer: float = 0.25;
 		var victory_time: float = 8;
-		var wait_until_build_ons_shown: float = 5;
+		var wait_until_build_ons_shown: float = 2.5;
 		
 		var movement_tween: Tween = create_tween();
 		print("current position: " + str(self.global_position) );
@@ -122,6 +124,12 @@ func _handle_cutscene(cutscene_type: Enums.cutscene_type):
 		
 		await get_tree().create_timer(wait_until_build_ons_shown).timeout;
 		Events.show_build_on_options.emit();
+		Events.reset_player_to_origin.emit();
+		
+
+func _on_reset_player_to_origin():
+	self.global_position = Vector2(16 * 9, -16);
+
 
 func _on_water_nozzle_area_area_entered(area: Area2D) -> void:
 	if (area is Hazard && is_watering):

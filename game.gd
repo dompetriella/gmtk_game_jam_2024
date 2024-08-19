@@ -27,7 +27,7 @@ var level5_time_between_fires: float = 15;
 var level5_time_between_fire_spread: float = 10;
 
 func _ready() -> void:
-	Events.build_on_chosen.connect(_generate_next_level);
+	Events.build_new_level.connect(_generate_next_level);
 
 func _generate_next_level():
 	Globals.current_level += 1;

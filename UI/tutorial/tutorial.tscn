@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dlhyhfrog51ql"]
+[gd_scene load_steps=7 format=3 uid="uid://dlhyhfrog51ql"]
 
 [ext_resource type="Texture2D" uid="uid://djxnhqln6vbo6" path="res://assets/sprites/exports/splash-screen.png" id="1_jbykd"]
 [ext_resource type="Script" path="res://UI/tutorial/tutorial_button_continue.gd" id="1_trg82"]
+[ext_resource type="FontFile" uid="uid://t6tfbs8a4wyy" path="res://assets/fonts/Minecraft.ttf" id="2_bq7f0"]
+[ext_resource type="Texture2D" uid="uid://crnaacv1vuybh" path="res://assets/sprites/exports/keyboard-wasd-sprite.png" id="3_xelxm"]
+[ext_resource type="Texture2D" uid="uid://q7we17g3nate" path="res://assets/sprites/exports/keyboard-arrows-sprite.png" id="4_1xkdx"]
+[ext_resource type="Texture2D" uid="uid://yyk1722x6u53" path="res://assets/sprites/exports/keyboard-space-sprite.png" id="5_g3hgt"]
 
 [node name="Tutorial" type="Control"]
 layout_mode = 3
@@ -21,14 +25,15 @@ grow_vertical = 2
 texture = ExtResource("1_jbykd")
 expand_mode = 2
 
-[node name="Label" type="Label" parent="."]
+[node name="Title" type="Label" parent="."]
 layout_mode = 0
 offset_left = 576.0
 offset_top = 48.0
 offset_right = 1104.0
 offset_bottom = 115.0
+theme_override_fonts/font = ExtResource("2_bq7f0")
 theme_override_font_sizes/font_size = 32
-text = "HOW TO PLAY"
+text = "FIRE RESCUE ROBO RANGER"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -42,12 +47,85 @@ theme_override_font_sizes/font_size = 16
 text = "Continue"
 script = ExtResource("1_trg82")
 
-[node name="Label2" type="Label" parent="."]
+[node name="Body" type="Label" parent="."]
 layout_mode = 0
 offset_left = 608.0
 offset_top = 120.0
 offset_right = 1072.0
 offset_bottom = 512.0
-text = "Test Text"
+theme_override_fonts/font = ExtResource("2_bq7f0")
+theme_override_font_sizes/font_size = 16
+text = "Another burn, another day on the job. Your mission: scale each mountain, fighting fires as you go to save local wildlife.
+
+Robo Ranger needs energy to keep going. Make sure you have enough to reach the top, but don’t let the fire get too out of control or you could end up roasted!
+
+Your reward? Each mountain offers a chance to build up your gear, and the satisfaction that another forest has been saved. The blaze stops here.
+
+"
+autowrap_mode = 2
+
+[node name="Keyboard-wasd-sprite" type="Sprite2D" parent="."]
+position = Vector2(660, 448)
+scale = Vector2(2.16667, 2.16667)
+texture = ExtResource("3_xelxm")
+
+[node name="Keyboard-arrows-sprite" type="Sprite2D" parent="."]
+position = Vector2(824, 448)
+scale = Vector2(2.16667, 2.125)
+texture = ExtResource("4_1xkdx")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 680.0
+offset_top = 368.0
+offset_right = 801.0
+offset_bottom = 408.0
+theme_override_fonts/font = ExtResource("2_bq7f0")
+theme_override_font_sizes/font_size = 20
+text = "MOVE WITH"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 920.0
+offset_top = 368.0
+offset_right = 1064.0
+offset_bottom = 417.0
+theme_override_fonts/font = ExtResource("2_bq7f0")
+theme_override_font_sizes/font_size = 20
+text = "PUT OUT FIRES WITH"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Label4" type="Label" parent="."]
+layout_mode = 0
+offset_left = 608.0
+offset_top = 536.0
+offset_right = 896.0
+offset_bottom = 585.0
+theme_override_fonts/font = ExtResource("2_bq7f0")
+theme_override_font_sizes/font_size = 24
+text = "GOOD LUCK RANGER!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 696.0
+offset_top = 448.0
+offset_right = 788.0
+offset_bottom = 488.0
+theme_override_fonts/font = ExtResource("2_bq7f0")
+text = "OR"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Keyboard-space-sprite" type="Sprite2D" parent="."]
+position = Vector2(992, 465)
+scale = Vector2(2.66667, 2.4375)
+texture = ExtResource("5_g3hgt")
 
 [connection signal="pressed" from="StartGameButton" to="StartGameButton" method="_on_pressed"]

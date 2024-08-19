@@ -10,7 +10,8 @@ func _on_click(event: InputEvent):
 	if (event is InputEventMouseButton):
 		var mouse_event = event as InputEventMouseButton;
 		if (mouse_event.button_index == MOUSE_BUTTON_LEFT && mouse_event.pressed):
-			print('hllo');
+			Events.hide_build_on_options.emit();
+			Events.fade_from_black.emit();
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass;

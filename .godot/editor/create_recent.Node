@@ -1,9 +1,9 @@
 TextureRect
+Label
 Sprite2D
 GPUParticles2D
 Node2D
 Node
-Label
 Control
 ParallaxLayer
 ParallaxBackground

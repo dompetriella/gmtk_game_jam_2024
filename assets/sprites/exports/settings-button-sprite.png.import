@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clbcxak6dxdoh"
-path="res://.godot/imported/9slice_roboranger_toscale.png-8c5ea63f2ea04e3509adaaa09c91168e.ctex"
+uid="uid://bpddkedmbcpbu"
+path="res://.godot/imported/settings-button-sprite.png-85bacc498340683912e3d1e1ec48ee3a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/exports/9slice_roboranger_toscale.png"
-dest_files=["res://.godot/imported/9slice_roboranger_toscale.png-8c5ea63f2ea04e3509adaaa09c91168e.ctex"]
+source_file="res://assets/sprites/exports/settings-button-sprite.png"
+dest_files=["res://.godot/imported/settings-button-sprite.png-85bacc498340683912e3d1e1ec48ee3a.ctex"]
 
 [params]
 

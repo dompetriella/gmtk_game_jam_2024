@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://mhq8kqrwhxu1"]
+[gd_scene load_steps=3 format=3 uid="uid://mhq8kqrwhxu1"]
 
+[ext_resource type="Script" path="res://UI/build_on/build_on_choice_screen.gd" id="1_fuysh"]
 [ext_resource type="PackedScene" uid="uid://degxsxqwdypep" path="res://UI/build_on/build_on_interactable.tscn" id="1_g4ocv"]
 
 [node name="BuildOnChoiceScreen" type="Control"]
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_fuysh")
 
 [node name="BuildOnChoice1" parent="." instance=ExtResource("1_g4ocv")]
 layout_mode = 2
