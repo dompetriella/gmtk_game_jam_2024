@@ -14,8 +14,8 @@ func _fade_to_black():
 	animation_player.play("fade_to_black");
 
 func _fade_from_black():
+	self.visible = true;
 	animation_player.play("fade_from_black");
-	animation_player.animation_finished.connect(func(): self.visible = false);
 
 func _wash_away():
 	self.visible = true;

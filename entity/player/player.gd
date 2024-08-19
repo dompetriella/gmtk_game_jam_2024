@@ -20,7 +20,7 @@ var is_watering: bool = false;
 var current_energy: float = energy_capacity;
 var in_cutscene: bool = false;
 
-var speed_multiplier = 10;
+var speed_multiplier = 1;
 
 func _ready() -> void:
 	#self.global_position = Vector2(-64, -4)
@@ -54,7 +54,10 @@ func _handle_watering():
 			is_watering = true;
 			await get_tree().create_timer(0.1).timeout;
 			water_particles.emitting = true;
-			Events.player_takes_energy_damage.emit(energy_usage_while_dowsing);
+			if !(Globals.check_if_player_has_build_on(Enums.build_ons.HYDROLIC_ENGINE)):
+				Events.player_takes_energy_damage.emit(energy_usage_while_dowsing);
+			if (Globals.check_if_player_has_build_on(Enums.build_ons.CONDENSED_BATTERY)):
+				self.speed *= 1.3
 		else:
 			is_watering = false;
 			water_particles.emitting = false;
@@ -76,7 +79,8 @@ func handle_input():
 
 func move_and_animate(delta: float):
 	if direction != Vector2.ZERO:
-		Events.player_takes_energy_damage.emit(energy_usage_while_climbing);
+		if !(Globals.check_if_player_has_build_on(Enums.build_ons.CONDENSED_BATTERY)):
+			Events.player_takes_energy_damage.emit(energy_usage_while_climbing);
 		# Move the character
 		velocity = direction * speed * speed_multiplier;
 		move_and_slide();

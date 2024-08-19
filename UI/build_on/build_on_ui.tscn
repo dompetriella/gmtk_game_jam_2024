@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://tpulxd2wunmd"]
+
+[ext_resource type="Texture2D" uid="uid://cwstbkonxyye4" path="res://assets/sprites/exports/build_ons/combustion-engine-icon-sprite.png" id="1_g0ewb"]
+[ext_resource type="Script" path="res://UI/build_on/build_on_ui.gd" id="1_qdu68"]
+
+[node name="BuildOnUi" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_qdu68")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_g0ewb")
+expand_mode = 4

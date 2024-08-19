@@ -15,7 +15,7 @@ signal wash_away;
 
 signal show_build_on_options;
 signal hide_build_on_options;
-signal build_on_chosen;
+signal build_on_chosen(build_on: BuildOn);
 signal reset_player_to_origin;
 
 #hazard

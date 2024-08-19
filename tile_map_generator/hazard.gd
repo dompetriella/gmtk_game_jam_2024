@@ -33,6 +33,8 @@ func _on_body_entered(body: Node2D) -> void:
 	if (body is Player && is_on_fire):
 		print('ouch!');
 		var multiplier: float = body.energy_usage_rate;
+		if (Globals.check_if_player_has_build_on(Enums.build_ons.FIREPROOF_CHASSIS)):
+			multiplier *= 0.5;
 		Events.player_takes_energy_damage.emit(50 * multiplier);
 	if (body is Player && is_finishing_tile):
 		Events.player_enter_cutscene.emit(Enums.cutscene_type.CLIMB_UP);
