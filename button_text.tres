@@ -1,0 +1,8 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://jlx1tmpwrmhm"]
+
+[ext_resource type="FontFile" uid="uid://t6tfbs8a4wyy" path="res://assets/fonts/Minecraft.ttf" id="1_m4gow"]
+
+[resource]
+base_font = ExtResource("1_m4gow")
+spacing_glyph = 5
+spacing_top = 12

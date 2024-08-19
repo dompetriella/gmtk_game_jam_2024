@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://b43g65hdrxmh3"]
+[gd_scene load_steps=6 format=3 uid="uid://b43g65hdrxmh3"]
 
 [ext_resource type="FontFile" uid="uid://t6tfbs8a4wyy" path="res://assets/fonts/Minecraft.ttf" id="1_cxggq"]
 [ext_resource type="Script" path="res://UI/game_over/to_main_button.gd" id="2_lt5h3"]
+[ext_resource type="Texture2D" uid="uid://55s00wn55qfu" path="res://assets/sprites/exports/title-button-sprite.png" id="2_xpkyp"]
+[ext_resource type="FontVariation" uid="uid://jlx1tmpwrmhm" path="res://button_text.tres" id="4_1lxm3"]
+[ext_resource type="Material" uid="uid://cg46eeh1jbx38" path="res://UI/menu/fire_particles_menu.tres" id="5_0elof"]
 
 [node name="GameOver" type="Control"]
 custom_minimum_size = Vector2(1152, 648)
@@ -49,7 +52,7 @@ text = "YOU'VE FAILED YOUR MISSION"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="TextureButton" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -62,9 +65,28 @@ offset_right = 193.0
 offset_bottom = 221.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_cxggq")
-theme_override_font_sizes/font_size = 36
-text = "MAIN MENU"
+texture_normal = ExtResource("2_xpkyp")
+stretch_mode = 0
 script = ExtResource("2_lt5h3")
+
+[node name="Label" type="Label" parent="Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.282353, 0.321569, 0.384314, 1)
+theme_override_fonts/font = ExtResource("4_1lxm3")
+theme_override_font_sizes/font_size = 48
+text = "MAIN MENU"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(15, 626)
+amount = 250
+process_material = ExtResource("5_0elof")
+lifetime = 5.0
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

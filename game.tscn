@@ -35,6 +35,7 @@ time_between_fires = 15.0
 time_between_fire_spread = 10.0
 
 [node name="Player" parent="." instance=ExtResource("1_ca313")]
+position = Vector2(-2, 0)
 speed = 40.0
 
 [node name="LeftBarrier" type="StaticBody2D" parent="."]
