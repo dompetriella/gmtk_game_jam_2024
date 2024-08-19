@@ -2,6 +2,7 @@ extends Node
 
 #game
 signal build_new_level;
+signal create_build_on_choices;
 
 #player
 signal player_takes_energy_damage(damage: float);

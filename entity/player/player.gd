@@ -112,6 +112,7 @@ func _handle_cutscene(cutscene_type: Enums.cutscene_type):
 		player_sprite.play("victory");
 		await get_tree().create_timer(5).timeout;
 		if (Globals.current_level < 5):
+			Events.create_build_on_choices.emit();
 			next_position = Vector2(self.global_position.x + (Globals.pixel_size*5) , self.global_position.y)
 			var move_left_tween: Tween = create_tween();
 			

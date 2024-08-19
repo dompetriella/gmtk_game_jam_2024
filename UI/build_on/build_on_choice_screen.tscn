@@ -25,6 +25,7 @@ offset_left = 512.0
 offset_top = 256.0
 offset_right = 512.0
 offset_bottom = 384.0
+index = 1
 
 [node name="BuildOnChoice3" parent="." instance=ExtResource("1_g4ocv")]
 layout_mode = 2
@@ -32,6 +33,7 @@ offset_left = 832.0
 offset_top = 256.0
 offset_right = 832.0
 offset_bottom = 384.0
+index = 2
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
