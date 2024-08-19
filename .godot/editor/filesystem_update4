@@ -32,3 +32,4 @@ res://UI/build_on/build_on_ui.tscn
 res://UI/build_on/build_on_ui.gd
 res://level/fade_transition.gd
 res://tile_map_generator/hazard.gd
+res://tile_map_generator/hazard_generator.gd

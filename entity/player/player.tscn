@@ -178,7 +178,7 @@ limit_bottom = 32
 
 [node name="WaterNozzleArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WaterNozzleArea"]
+[node name="WaterCollision" type="CollisionShape2D" parent="WaterNozzleArea"]
 position = Vector2(0, -29)
 shape = SubResource("CircleShape2D_pnxvi")
 
@@ -228,9 +228,6 @@ texture_progress_offset = Vector2(4, 30)
 script = ExtResource("4_7br2w")
 
 [node name="Fade" parent="CanvasLayer" instance=ExtResource("8_baxod")]
-offset_top = -704.0
-offset_bottom = -32.0
-color = Color(0.411765, 0.596078, 1, 0)
 
 [node name="BuildOnColumn" type="VBoxContainer" parent="CanvasLayer"]
 offset_left = 1096.0
@@ -240,4 +237,7 @@ offset_bottom = 465.0
 theme_override_constants/separation = 48
 script = ExtResource("16_3nq5v")
 
+[node name="SolarBatteryTimer" type="Timer" parent="."]
+
 [connection signal="area_entered" from="WaterNozzleArea" to="." method="_on_water_nozzle_area_area_entered"]
+[connection signal="timeout" from="SolarBatteryTimer" to="." method="_on_solar_battery_timer_timeout"]

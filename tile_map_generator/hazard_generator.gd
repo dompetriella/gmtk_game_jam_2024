@@ -60,6 +60,7 @@ func _fire_timer_timeout():
 		for hazard: Hazard in hazard_children:
 			if (hazard.hazard_coordinate == first_fire_tile_vector && hazard.is_on_fire == false):
 				hazard.is_on_fire = true;
+				Events.adjust_approval.emit(-1);
 				hazard.set_animated_sprite(fire_animated_sprite);
 				break;
 			break;
@@ -92,6 +93,7 @@ func _get_area_neighbors(current_tile: Vector2) -> Array[Hazard]:
 func _add_fire_timer_to_neighbors(neighbor: Hazard, old_timer: float) -> void:
 	if (!neighbor.is_on_fire):
 		neighbor.is_on_fire = true;
+		Events.adjust_approval.emit(-1);
 		neighbor.set_animated_sprite(fire_animated_sprite);
 		var new_fire_timer: Timer = Timer.new();
 		new_fire_timer.autostart = true;

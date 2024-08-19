@@ -21,6 +21,7 @@ signal reset_player_to_origin;
 #hazard
 signal start_fires;
 signal dowse_hazard_tile(hazard_tile_id: int);
+signal adjust_approval(amount: float);
 
 #etc
 signal set_station_to_front;

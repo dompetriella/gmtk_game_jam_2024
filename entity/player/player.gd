@@ -10,6 +10,8 @@ extends CharacterBody2D
 @export var energy_usage_while_dowsing: float = 12;
 @export var energy_usage_rate: float = 100;
 
+@onready var approval_bar: TextureProgressBar = $CanvasLayer/ApprovalBar
+@onready var energy_bar: TextureProgressBar = $CanvasLayer/EnergyBar
 
 @onready var water_nozzle_area: Area2D = $WaterNozzleArea
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -20,6 +22,7 @@ var is_watering: bool = false;
 var current_energy: float = energy_capacity;
 var in_cutscene: bool = false;
 
+var jet_propulsion_multiplier = 1;
 var speed_multiplier = 1;
 
 func _ready() -> void:
@@ -56,8 +59,8 @@ func _handle_watering():
 			water_particles.emitting = true;
 			if !(Globals.check_if_player_has_build_on(Enums.build_ons.HYDROLIC_ENGINE)):
 				Events.player_takes_energy_damage.emit(energy_usage_while_dowsing);
-			if (Globals.check_if_player_has_build_on(Enums.build_ons.CONDENSED_BATTERY)):
-				self.speed *= 1.3
+			if (Globals.check_if_player_has_build_on(Enums.build_ons.JET_PROPULSION)):
+				self.jet_propulsion_multiplier = 2;
 		else:
 			is_watering = false;
 			water_particles.emitting = false;
@@ -81,15 +84,19 @@ func move_and_animate(delta: float):
 	if direction != Vector2.ZERO:
 		if !(Globals.check_if_player_has_build_on(Enums.build_ons.CONDENSED_BATTERY)):
 			Events.player_takes_energy_damage.emit(energy_usage_while_climbing);
+		if (is_watering):
 		# Move the character
-		velocity = direction * speed * speed_multiplier;
+			velocity = direction * speed * speed_multiplier * jet_propulsion_multiplier;
+		else:
+			velocity = direction * speed * speed_multiplier;
 		move_and_slide();
 
 		# Play the animation
 		if not player_sprite.is_playing():
 			player_sprite.play("move");
 	else:
-		Events.player_takes_energy_damage.emit(energy_usage_while_still);
+		if !(Globals.check_if_player_has_build_on(Enums.build_ons.MECHANICAL_ARM)):
+			Events.player_takes_energy_damage.emit(energy_usage_while_still);
 		player_sprite.pause();
 		
 func _handle_cutscene(cutscene_type: Enums.cutscene_type):
@@ -163,6 +170,7 @@ func _handle_cutscene(cutscene_type: Enums.cutscene_type):
 		movement_tween.stop();
 		player_sprite.play("default");
 		player_sprite.stop();
+		_add_approval_to_energy();
 		Events.set_station_to_front.emit();
 		Events.start_fires.emit();
 		self.in_cutscene = false;
@@ -177,3 +185,16 @@ func _on_water_nozzle_area_area_entered(area: Area2D) -> void:
 	if (area is Hazard && is_watering):
 		Events.dowse_hazard_tile.emit(area.hazard_list_index);
 			
+
+
+func _on_solar_battery_timer_timeout() -> void:
+	self.current_energy += 50;
+
+func _add_approval_to_energy():
+	var player: Player = get_tree().get_first_node_in_group(NodeGroups.player);
+
+	var approval_increase = player.energy_capacity * (approval_bar.current_approval / approval_bar.total_approval);
+	if (energy_bar.value + approval_increase > player.energy_capacity):
+		energy_bar.value = player.energy_capacity;
+	else:
+		energy_bar.value = energy_bar.value + approval_increase;

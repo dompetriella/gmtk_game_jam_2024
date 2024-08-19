@@ -127,13 +127,6 @@ func _on_timer_timeout() -> void:
 	Events.start_fires.emit();
 	
 func _generate_build_ons():
-	
-	var combustion_engine: BuildOn = BuildOn.new()
-	combustion_engine.id = Enums.build_ons.COMBUSTION_ENGINE
-	combustion_engine.title = "Combustion Engine"
-	combustion_engine.description = "Moving through fire increases speed by 50%"
-	combustion_engine.sprite_path = "res://assets/sprites/exports/build_ons/combustion-engine-icon-sprite.png"
-	Globals.all_build_ons.append(combustion_engine)
 
 	var condensed_battery: BuildOn = BuildOn.new()
 	condensed_battery.id = Enums.build_ons.CONDENSED_BATTERY
@@ -145,28 +138,28 @@ func _generate_build_ons():
 	var efficient_engine: BuildOn = BuildOn.new()
 	efficient_engine.id = Enums.build_ons.EFFICIENT_ENGINE
 	efficient_engine.title = "Efficient Engine"
-	efficient_engine.description = "Energy usage decreased by 50%"  # Add your description here
+	efficient_engine.description = "Greatly reduces energy consumption"  # Add your description here
 	efficient_engine.sprite_path = "res://assets/sprites/exports/build_ons/efficient-engine-icon-sprite.png"
 	Globals.all_build_ons.append(efficient_engine)
 
 	var energy_bracer: BuildOn = BuildOn.new()
 	energy_bracer.id = Enums.build_ons.ENERGY_BRACER
 	energy_bracer.title = "Energy Bracer"
-	energy_bracer.description = "Energy capacity increased by 50%"  # Add your description here
+	energy_bracer.description = "Greatly increases energy capacity"  # Add your description here
 	energy_bracer.sprite_path = "res://assets/sprites/exports/build_ons/energy-bracer-icon-sprite.png"
 	Globals.all_build_ons.append(energy_bracer)
 
 	var fireproof_chassis: BuildOn = BuildOn.new()
 	fireproof_chassis.id = Enums.build_ons.FIREPROOF_CHASSIS
 	fireproof_chassis.title = "Fireproof Chassis"
-	fireproof_chassis.description = "Fire damage decreased by 50%"  # Add your description here
+	fireproof_chassis.description = "Negates damage from fire"  # Add your description here
 	fireproof_chassis.sprite_path = "res://assets/sprites/exports/build_ons/fire-proof-icon-sprite.png"
 	Globals.all_build_ons.append(fireproof_chassis)
 
 	var heavy_battery: BuildOn = BuildOn.new()
 	heavy_battery.id = Enums.build_ons.HEAVY_BATTERY
 	heavy_battery.title = "Heavy Battery"
-	heavy_battery.description = "Doubles current energy capacity but reduces speed by 20%"  # Add your description here
+	heavy_battery.description = "Enormously increases energy capacity but reduces speed by 20%"  # Add your description here
 	heavy_battery.sprite_path = "res://assets/sprites/exports/build_ons/heavy-battery-icon-sprite.png"
 	Globals.all_build_ons.append(heavy_battery)
 
@@ -180,21 +173,21 @@ func _generate_build_ons():
 	var jet_propulsion: BuildOn = BuildOn.new()
 	jet_propulsion.id = Enums.build_ons.JET_PROPULSION
 	jet_propulsion.title = "Jet Propulsion"
-	jet_propulsion.description = "Move 30% faster while extinguishing"  # Add your description here
+	jet_propulsion.description = "Move much faster while extinguishing"  # Add your description here
 	jet_propulsion.sprite_path = "res://assets/sprites/exports/build_ons/jet-propulsion-icon-sprite.png"
 	Globals.all_build_ons.append(jet_propulsion)
 
 	var mechanical_arm: BuildOn = BuildOn.new()
 	mechanical_arm.id = Enums.build_ons.MECHANICAL_ARM
 	mechanical_arm.title = "Mechanical Arm"
-	mechanical_arm.description = "Energy is not lost when not moving, and movement speed is increased by 25%"  # Add your description here
+	mechanical_arm.description = "Energy is not lost when not moving, and movement speed is increased"  # Add your description here
 	mechanical_arm.sprite_path = "res://assets/sprites/exports/build_ons/mechanical-arm-icon-sprite.png"
 	Globals.all_build_ons.append(mechanical_arm)
 
 	var mega_hose: BuildOn = BuildOn.new()
 	mega_hose.id = Enums.build_ons.MEGA_HOSE
 	mega_hose.title = "Mega Hose"
-	mega_hose.description = "Increase extinguisher radius by 50%"  # Add your description here
+	mega_hose.description = "Greatly extinguisher radius"  # Add your description here
 	mega_hose.sprite_path = "res://assets/sprites/exports/build_ons/mega-hose-icon-sprite.png"
 	Globals.all_build_ons.append(mega_hose)
 

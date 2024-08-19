@@ -1,11 +1,15 @@
 class_name BuildOnInteractable
 extends Control
+@onready var approval_bar: TextureProgressBar = $CanvasLayer/ApprovalBar
+@onready var energy_bar: TextureProgressBar = $CanvasLayer/EnergyBar
 
 @export var index: int;
+@onready var water_nozzle_area: Area2D = $WaterNozzleArea
 
 @onready var icon: TextureRect = $GPUParticles2D/Icon
 @onready var title: Label = $Title
 @onready var description: Label = $Description
+@onready var solar_battery_timer: Timer = $SolarBatteryTimer
 
 var build_on: BuildOn;
 # Called when the node enters the scene tree for the first time.
@@ -33,13 +37,17 @@ func _on_click(event: InputEvent):
 func _add_immediate_build_on(build_on: BuildOn):
 	var player: Player = get_tree().get_first_node_in_group(NodeGroups.player);
 	if (build_on.id == Enums.build_ons.ENERGY_BRACER):
-		player.energy_capacity = player.energy_capacity * 1.5;
+		player.energy_capacity = player.energy_capacity * 2;
 	if (build_on.id == Enums.build_ons.EFFICIENT_ENGINE):
 		player.energy_usage_rate = player.energy_usage_rate / 2;
 	if (build_on.id == Enums.build_ons.MECHANICAL_ARM):
-		player.speed = player.speed * 1.25;
+		player.speed = player.speed * 1.50;
 	if (build_on.id == Enums.build_ons.CONDENSED_BATTERY):
 		player.energy_capacity = player.energy_capacity * 0.8;
 	if (build_on.id == Enums.build_ons.HEAVY_BATTERY):
-		player.energy_capacity = player.energy_capacity * 2;
+		player.energy_capacity = player.energy_capacity * 4;
 		player.speed = player.speed * 0.8;
+	if (build_on.id == Enums.build_ons.SOLAR_BATTERY):
+		solar_battery_timer.start();
+	if (build_on.id == Enums.build_ons.MEGA_HOSE):
+		water_nozzle_area.scale = Vector2(2, 2);
