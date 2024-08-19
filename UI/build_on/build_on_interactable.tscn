@@ -28,7 +28,7 @@ position = Vector2(64, 64)
 amount = 200
 process_material = SubResource("ParticleProcessMaterial_gaktp")
 
-[node name="TextureRect" type="TextureRect" parent="GPUParticles2D"]
+[node name="Icon" type="TextureRect" parent="GPUParticles2D"]
 custom_minimum_size = Vector2(100, 100)
 offset_left = -64.0
 offset_top = -64.0
@@ -36,7 +36,7 @@ offset_right = 64.0
 offset_bottom = 64.0
 texture = ExtResource("2_nxl0n")
 
-[node name="Label" type="Label" parent="."]
+[node name="Title" type="Label" parent="."]
 layout_mode = 0
 offset_top = 192.0
 offset_right = 128.0
@@ -45,7 +45,7 @@ text = "ITEM NAME"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="."]
+[node name="Description" type="Label" parent="."]
 layout_mode = 0
 offset_top = 232.0
 offset_right = 128.0

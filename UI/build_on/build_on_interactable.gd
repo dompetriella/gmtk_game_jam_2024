@@ -1,10 +1,18 @@
 class_name BuildOnInteractable
 extends Control
 
+@onready var icon: TextureRect = $GPUParticles2D/Icon
+@onready var title: Label = $Title
+@onready var description: Label = $Description
+
+var build_on_data: BuildOn;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	self.gui_input.connect(_on_click);
+	icon.texture = build_on_data.sprite;
+	title.text = build_on_data.title;
+	description.text = build_on_data.description;
 
 func _on_click(event: InputEvent):
 	if (event is InputEventMouseButton):

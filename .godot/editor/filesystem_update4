@@ -20,3 +20,8 @@ res://UI/game_over/to_main_button.gd
 res://UI/approval_bar/approval_bar.gd
 res://UI/energy_bar/energy_bar.gd
 res://entity/player/player.gd
+res://globals.gd
+res://models/build_on.gd
+res://enums.gd
+res://UI/build_on/build_on_choice_screen.gd
+res://UI/build_on/build_on_interactable.gd
