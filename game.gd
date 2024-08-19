@@ -38,6 +38,7 @@ func _generate_next_level():
 		
 	var new_level: TileMapGenerator = tile_map_generator.instantiate();
 	
+	# not my finest work but whatevs lol
 	match Globals.current_level:
 		2:
 			new_level.climbable_height = level2_height;
@@ -47,6 +48,14 @@ func _generate_next_level():
 			
 			new_level.time_between_fire_spread = level2_time_between_fire_spread;
 			new_level.name = "Level 2";
+			
+			#darker
+			var modulate_color = modulate
+			modulate_color.r *= 0.9  # Increase the red component
+			modulate_color.g *= 1.1  # Slightly decrease the green component
+			modulate_color.b *= 0.9  # Slightly decrease the blue component
+
+			new_level.modulate = modulate_color
 		3:
 			new_level.climbable_height = level3_height;
 			new_level.time_before_initial_fire = level3_time_before_initial_fire;
@@ -55,7 +64,15 @@ func _generate_next_level():
 			
 			new_level.time_between_fire_spread = level3_time_between_fire_spread;
 			new_level.name = "Level 3";
-			new_level.modulate = Color.RED;
+			
+			#greener
+			var modulate_color = modulate
+			modulate_color.r *= 0.8  # Increase the red component
+			modulate_color.g *= 1.1  # Slightly decrease the green component
+			modulate_color.b *= 0.9  # Slightly decrease the blue component
+
+			new_level.modulate = modulate_color
+		
 		4:
 			new_level.climbable_height = level4_height;
 			new_level.time_before_initial_fire = level4_time_before_initial_fire;
@@ -64,7 +81,15 @@ func _generate_next_level():
 			
 			new_level.time_between_fire_spread = level4_time_between_fire_spread;	
 			new_level.name = "Level 4";	
-			new_level.modulate = Color.BLUE;
+			
+			#reddish tint
+			var modulate_color = modulate
+			modulate_color.r *= 1.05  # Increase the red component
+			modulate_color.g *= 0.95  # Slightly decrease the green component
+			modulate_color.b *= 0.95  # Slightly decrease the blue component
+
+			new_level.modulate = modulate_color
+			
 		5:
 			new_level.climbable_height = level5_height;
 			new_level.time_before_initial_fire = level5_time_before_initial_fire;
@@ -73,7 +98,14 @@ func _generate_next_level():
 			
 			new_level.time_between_fire_spread = level5_time_between_fire_spread;
 			new_level.name = "Level 5";
-			new_level.modulate = Color.YELLOW;
+			
+			#reddish tint
+			var modulate_color = modulate
+			modulate_color.r *= 1.2  # Increase the red component
+			modulate_color.g *= 0.7  # Slightly decrease the green component
+			modulate_color.b *= 0.7  # Slightly decrease the blue component
+
+			new_level.modulate = modulate_color
 	
 	self.remove_child(tile_generator);
 	tile_generator.queue_free();

@@ -1,3 +1,4 @@
+Button
 TextureRect
 Label
 Sprite2D
@@ -10,5 +11,4 @@ ParallaxBackground
 MarginContainer
 HBoxContainer
 VBoxContainer
-Button
 AnimationPlayer

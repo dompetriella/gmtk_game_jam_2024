@@ -32,3 +32,6 @@ res://UI/player_ui/player_ui.gd
 res://UI/build_on/build_on_choice_screen.gd
 res://level/ranger_station.gd
 res://enums.gd
+res://UI/victory_screen/victory_screen.tscn
+res://UI/victory_screen/restart_game_button.gd
+res://globals.gd

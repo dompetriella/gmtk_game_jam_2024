@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0p5556y46cby"]
+
+[ext_resource type="Texture2D" uid="uid://djxnhqln6vbo6" path="res://assets/sprites/exports/splash-screen.png" id="1_ccdjr"]
+[ext_resource type="FontFile" uid="uid://t6tfbs8a4wyy" path="res://assets/fonts/Minecraft.ttf" id="2_llc3f"]
+[ext_resource type="Script" path="res://UI/victory_screen/restart_game_button.gd" id="3_1t3cr"]
+
+[node name="Victory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ccdjr")
+expand_mode = 2
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 48.0
+offset_right = 1104.0
+offset_bottom = 115.0
+theme_override_fonts/font = ExtResource("2_llc3f")
+theme_override_font_sizes/font_size = 32
+text = "CONGRATS ROBO RANGER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 160.0
+offset_right = 1104.0
+offset_bottom = 227.0
+theme_override_fonts/font = ExtResource("2_llc3f")
+theme_override_font_sizes/font_size = 32
+text = "Build-Ons"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RestartGameButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 664.0
+offset_top = 416.0
+offset_right = 1016.0
+offset_bottom = 560.0
+text = "To Main Menu"
+script = ExtResource("3_1t3cr")
+
+[connection signal="pressed" from="RestartGameButton" to="RestartGameButton" method="_on_pressed"]

@@ -20,7 +20,7 @@ var is_watering: bool = false;
 var current_energy: float = energy_capacity;
 var in_cutscene: bool = false;
 
-var speed_multiplier = 5;
+var speed_multiplier = 1;
 
 func _ready() -> void:
 	#self.global_position = Vector2(-64, -4)
@@ -111,20 +111,31 @@ func _handle_cutscene(cutscene_type: Enums.cutscene_type):
 		await get_tree().create_timer(0.2).timeout;
 		player_sprite.play("victory");
 		await get_tree().create_timer(5).timeout;
-		next_position = Vector2(self.global_position.x + (Globals.pixel_size*5) , self.global_position.y)
-		var move_left_tween: Tween = create_tween();
-		
-		Events.fade_to_black.emit();
-		
-		player_sprite.play("walk");
-		move_left_tween.tween_property(self, "global_position", next_position, (move_to_ranger_station_time));
-		await get_tree().create_timer(move_to_ranger_station_time + time_buffer).timeout;
-		move_left_tween.stop();
-		player_sprite.stop();
-		
-		await get_tree().create_timer(wait_until_build_ons_shown).timeout;
-		Events.show_build_on_options.emit();
-		Events.reset_player_to_origin.emit();
+		if (Globals.current_level < 5):
+			next_position = Vector2(self.global_position.x + (Globals.pixel_size*5) , self.global_position.y)
+			var move_left_tween: Tween = create_tween();
+			
+			Events.fade_to_black.emit();
+			
+			player_sprite.play("walk");
+			move_left_tween.tween_property(self, "global_position", next_position, (move_to_ranger_station_time));
+			await get_tree().create_timer(move_to_ranger_station_time + time_buffer).timeout;
+			move_left_tween.stop();
+			player_sprite.stop();
+			
+			await get_tree().create_timer(wait_until_build_ons_shown).timeout;
+			Events.show_build_on_options.emit();
+			Events.reset_player_to_origin.emit();
+		else:
+			water_particles.emitting = true;
+			water_particles.position = Vector2(water_particles.position.x, water_particles.position.y - 4)
+			water_particles.amount = water_particles.amount * 10;
+			water_particles.lifetime = water_particles.lifetime * 3;
+			water_particles.scale = water_particles.scale * 3;
+			await get_tree().create_timer(3).timeout;
+			Events.wash_away.emit();
+			await get_tree().create_timer(3).timeout;
+			get_tree().change_scene_to_file("res://UI/victory_screen/victory_screen.tscn");
 		
 	if (cutscene_type == Enums.cutscene_type.LEAVE_STATION):
 		self.in_cutscene = true;
@@ -146,6 +157,7 @@ func _handle_cutscene(cutscene_type: Enums.cutscene_type):
 		await get_tree().create_timer(pause_time).timeout;
 		movement_tween.stop();
 		player_sprite.play("default");
+		player_sprite.stop();
 		Events.set_station_to_front.emit();
 		self.in_cutscene = false;
 		

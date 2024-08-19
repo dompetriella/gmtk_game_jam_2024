@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwf38ith8shuu"]
+[gd_scene load_steps=7 format=3 uid="uid://dwf38ith8shuu"]
 
 [ext_resource type="Script" path="res://level/fade_transition.gd" id="1_f2btv"]
 
@@ -32,6 +32,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(0, 0, 0, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -704)]
+}
 
 [sub_resource type="Animation" id="Animation_vkyg7"]
 resource_name = "fade_from_black"
@@ -49,18 +61,44 @@ tracks/0/keys = {
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_qc3wr"]
+resource_name = "wash_away"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -900), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.411765, 0.596078, 1, 0), Color(0.411765, 0.596078, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hyyvt"]
 _data = {
 "RESET": SubResource("Animation_usvlt"),
 "fade_from_black": SubResource("Animation_vkyg7"),
-"fade_to_black": SubResource("Animation_oyya1")
+"fade_to_black": SubResource("Animation_oyya1"),
+"wash_away": SubResource("Animation_qc3wr")
 }
 
 [node name="ColorRect" type="ColorRect"]
-offset_left = -16.0
-offset_top = -8.0
-offset_right = 1176.0
-offset_bottom = 664.0
+offset_right = 1192.0
+offset_bottom = 672.0
 color = Color(0, 0, 0, 0)
 script = ExtResource("1_f2btv")
 
