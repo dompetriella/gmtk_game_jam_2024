@@ -1,4 +1,4 @@
 extends Node
 
 
-enum cutscene_type { START, CLIMB_UP, FINISH }
+enum cutscene_type { CLIMB_UP, LEAVE_STATION, FINISH }

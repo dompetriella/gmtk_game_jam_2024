@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://degxsxqwdypep"]
 
 [ext_resource type="Script" path="res://UI/build_on/build_on_interactable.gd" id="2_fubru"]
-[ext_resource type="Texture2D" uid="uid://dgtmaec1g8wgf" path="res://assets/sprites/exports/build_ons/solar-powered-icon-sprite.png" id="2_mxdel"]
+[ext_resource type="Texture2D" uid="uid://dl3on35ognjm3" path="res://assets/sprites/exports/build_ons/smother-blanket-icon-sprite.png" id="2_nxl0n"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gaktp"]
 particle_flag_disable_z = true
@@ -34,7 +34,7 @@ offset_left = -64.0
 offset_top = -64.0
 offset_right = 64.0
 offset_bottom = 64.0
-texture = ExtResource("2_mxdel")
+texture = ExtResource("2_nxl0n")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0

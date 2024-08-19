@@ -31,3 +31,4 @@ res://assets/sprites/test/new_tile_set.tres
 res://UI/player_ui/player_ui.gd
 res://UI/build_on/build_on_choice_screen.gd
 res://level/ranger_station.gd
+res://enums.gd

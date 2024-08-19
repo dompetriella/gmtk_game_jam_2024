@@ -35,7 +35,7 @@ func _ready() -> void:
 	Events.player_exit_cutscene.connect(func():
 		in_cutscene = false;	
 	)
-	Events.reset_player_to_origin.connect(_on_reset_player_to_origin);
+	Events.reset_player_to_origin.connect(_on_reset_player_to_ranger_station);
 
 
 
@@ -123,12 +123,13 @@ func _handle_cutscene(cutscene_type: Enums.cutscene_type):
 		player_sprite.stop();
 		
 		await get_tree().create_timer(wait_until_build_ons_shown).timeout;
+		Events.build_new_level.emit();
 		Events.show_build_on_options.emit();
 		Events.reset_player_to_origin.emit();
 		
 
-func _on_reset_player_to_origin():
-	self.global_position = Vector2(16 * 9, -16);
+func _on_reset_player_to_ranger_station():
+	self.global_position = Vector2(212, -12);
 
 
 func _on_water_nozzle_area_area_entered(area: Area2D) -> void:

@@ -155,10 +155,6 @@ hue_variation_max = 0.03
 z_index = 99
 script = ExtResource("1_oktdr")
 speed = 25.0
-energy_capacity = null
-energy_usage_while_climbing = null
-energy_usage_while_still = null
-energy_usage_while_dowsing = null
 energy_usage_rate = 200.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
