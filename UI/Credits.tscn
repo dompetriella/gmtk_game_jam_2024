@@ -1,0 +1,136 @@
+[gd_scene load_steps=5 format=3 uid="uid://coy3hmbl38pw8"]
+
+[ext_resource type="Texture2D" uid="uid://55s00wn55qfu" path="res://assets/sprites/exports/title-button-sprite.png" id="1_sjdbt"]
+[ext_resource type="Script" path="res://UI/back_button.gd" id="2_aunbj"]
+[ext_resource type="FontVariation" uid="uid://jlx1tmpwrmhm" path="res://button_text.tres" id="3_liw4d"]
+[ext_resource type="Material" uid="uid://cg46eeh1jbx38" path="res://UI/menu/fire_particles_menu.tres" id="4_2vajv"]
+
+[node name="Credits" type="Control"]
+custom_minimum_size = Vector2(1152, 648)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 176.0
+theme_override_font_sizes/font_size = 60
+text = "CREDITS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 208.0
+offset_right = 488.0
+offset_bottom = 288.0
+theme_override_font_sizes/font_size = 48
+text = "samuraiFISH07"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 608.0
+offset_top = 208.0
+offset_right = 1056.0
+offset_bottom = 288.0
+theme_override_font_sizes/font_size = 48
+text = "medieval_thymes"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="."]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 400.0
+offset_right = 784.0
+offset_bottom = 480.0
+theme_override_font_sizes/font_size = 48
+text = "AquaticAnuran"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label5" type="Label" parent="."]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 288.0
+offset_right = 384.0
+offset_bottom = 400.0
+theme_override_font_sizes/font_size = 24
+text = "- Art
+- Play Testing"
+
+[node name="Label7" type="Label" parent="."]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 480.0
+offset_right = 656.0
+offset_bottom = 592.0
+theme_override_font_sizes/font_size = 24
+text = "- Programming
+- Music"
+
+[node name="Label8" type="Label" parent="."]
+layout_mode = 0
+offset_left = 688.0
+offset_top = 520.0
+offset_right = 1136.0
+offset_bottom = 632.0
+theme_override_font_sizes/font_size = 24
+text = "Special Thanks to
+Rojo - Game Testing
+Pixabay - SFX"
+horizontal_alignment = 2
+
+[node name="Label6" type="Label" parent="."]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 280.0
+offset_right = 912.0
+offset_bottom = 392.0
+theme_override_font_sizes/font_size = 24
+text = "- Art
+- Play Testing"
+
+[node name="Button" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 48.0
+offset_right = 248.0
+offset_bottom = 120.0
+texture_normal = ExtResource("1_sjdbt")
+stretch_mode = 0
+script = ExtResource("2_aunbj")
+
+[node name="Label9" type="Label" parent="Button"]
+layout_mode = 0
+offset_right = 184.0
+offset_bottom = 67.0
+theme_override_fonts/font = ExtResource("3_liw4d")
+theme_override_font_sizes/font_size = 24
+text = "BACK"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(40, 608)
+amount = 200
+process_material = ExtResource("4_2vajv")
+lifetime = 10.0
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

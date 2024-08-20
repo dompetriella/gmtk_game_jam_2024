@@ -8,6 +8,7 @@ signal create_build_on_choices;
 signal player_takes_energy_damage(damage: float);
 signal player_enter_cutscene(cutscene_type: Enums.cutscene_type);
 signal player_exit_cutscene;
+signal restore_energy;
 
 signal fade_to_black;
 signal fade_from_black;
@@ -26,3 +27,8 @@ signal adjust_approval(amount: float);
 #etc
 signal set_station_to_front;
 signal set_station_to_back;
+signal play_victory_jingle;
+signal play_main_theme;
+signal sfx1_play(sound_path: String);
+signal sfx2_play(sound_path: String);
+signal sfx3_play(sound_path: String);

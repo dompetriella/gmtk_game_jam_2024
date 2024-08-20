@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://sw0kfx2ucpv5"]
+[gd_scene load_steps=5 format=3 uid="uid://sw0kfx2ucpv5"]
 
 [ext_resource type="PackedScene" uid="uid://b4x5t3gg3mvxe" path="res://UI/menu/main_menu.tscn" id="1_affdx"]
 [ext_resource type="Material" uid="uid://cg46eeh1jbx38" path="res://UI/menu/fire_particles_menu.tres" id="2_o6ruq"]
+[ext_resource type="AudioStream" uid="uid://bderbhrgvimq7" path="res://assets/music/FRRR_main_theme4.mp3" id="3_q38g2"]
+[ext_resource type="Script" path="res://audio_stream_player_2d.gd" id="4_wlk1t"]
 
 [node name="Main" type="Node2D"]
 
@@ -20,3 +22,8 @@ position = Vector2(0, 640)
 amount = 150
 process_material = ExtResource("2_o6ruq")
 lifetime = 5.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_q38g2")
+autoplay = true
+script = ExtResource("4_wlk1t")

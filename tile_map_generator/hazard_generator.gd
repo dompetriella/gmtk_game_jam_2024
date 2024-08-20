@@ -93,13 +93,15 @@ func _get_area_neighbors(current_tile: Vector2) -> Array[Hazard]:
 func _add_fire_timer_to_neighbors(neighbor: Hazard, old_timer: float) -> void:
 	if (!neighbor.is_on_fire):
 		neighbor.is_on_fire = true;
-		Events.adjust_approval.emit(-1);
-		neighbor.set_animated_sprite(fire_animated_sprite);
-		var new_fire_timer: Timer = Timer.new();
-		new_fire_timer.autostart = true;
-		new_fire_timer.wait_time = time_between_spreading_fire;
-		new_fire_timer.timeout.connect(_set_fire_to_neighbors.bind(neighbor.hazard_coordinate));
-		neighbor.add_child(new_fire_timer);
+		var player: Player = get_tree().get_first_node_in_group(NodeGroups.player);
+		if (player.in_cutscene == false):
+			Events.adjust_approval.emit(-2);
+			neighbor.set_animated_sprite(fire_animated_sprite);
+			var new_fire_timer: Timer = Timer.new();
+			new_fire_timer.autostart = true;
+			new_fire_timer.wait_time = time_between_spreading_fire;
+			new_fire_timer.timeout.connect(_set_fire_to_neighbors.bind(neighbor.hazard_coordinate));
+			neighbor.add_child(new_fire_timer);
 		
 
 

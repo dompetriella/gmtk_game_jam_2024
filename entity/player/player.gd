@@ -55,6 +55,7 @@ func _process(delta: float):
 func _handle_watering():
 		if Input.is_action_pressed("ui_select"):
 			is_watering = true;
+			
 			await get_tree().create_timer(0.1).timeout;
 			water_particles.emitting = true;
 			if !(Globals.check_if_player_has_build_on(Enums.build_ons.HYDROLIC_ENGINE)):
@@ -121,6 +122,7 @@ func _handle_cutscene(cutscene_type: Enums.cutscene_type):
 		movement_tween.stop();
 		await get_tree().create_timer(0.2).timeout;
 		player_sprite.play("victory");
+		Events.play_victory_jingle.emit();
 		await get_tree().create_timer(5).timeout;
 		if (Globals.current_level < 5):
 			Events.create_build_on_choices.emit();
@@ -171,10 +173,12 @@ func _handle_cutscene(cutscene_type: Enums.cutscene_type):
 		player_sprite.play("default");
 		player_sprite.stop();
 		_add_approval_to_energy();
+		
 		Events.set_station_to_front.emit();
 		Events.start_fires.emit();
+		Events.restore_energy.emit();
 		self.in_cutscene = false;
-		
+		Events.play_main_theme.emit();
 		
 
 func _on_reset_player_to_ranger_station():

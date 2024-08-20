@@ -21,6 +21,7 @@ config/icon="res://icon.svg"
 Events="*res://events.gd"
 Globals="*res://globals.gd"
 Enums="*res://enums.gd"
+MusicPlayer="*res://music_player.gd"
 
 [display]
 

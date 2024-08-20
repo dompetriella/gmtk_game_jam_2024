@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://bev2k05fe3j12"]
+[gd_scene load_steps=16 format=4 uid="uid://bev2k05fe3j12"]
 
 [ext_resource type="PackedScene" uid="uid://cnsdp5mjeacsh" path="res://entity/player/player.tscn" id="1_ca313"]
 [ext_resource type="Script" path="res://game.gd" id="1_xd865"]
@@ -8,6 +8,11 @@
 [ext_resource type="TileSet" uid="uid://b6akmbadi4sw" path="res://assets/sprites/resources/ranger_tile_set_edit.tres" id="4_7spav"]
 [ext_resource type="PackedScene" uid="uid://cwhb160jml156" path="res://level/ranger_station.tscn" id="7_2yahv"]
 [ext_resource type="Script" path="res://level/ranger_station.gd" id="8_hpp2o"]
+[ext_resource type="AudioStream" uid="uid://bderbhrgvimq7" path="res://assets/music/FRRR_main_theme4.mp3" id="9_kfpfr"]
+[ext_resource type="Script" path="res://music_player.gd" id="10_4cpeo"]
+[ext_resource type="Script" path="res://sfx_1.gd" id="11_fj4lr"]
+[ext_resource type="Script" path="res://sfx_2.gd" id="12_cw3e0"]
+[ext_resource type="Script" path="res://sfx_3.gd" id="13_8ijro"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jkkjn"]
 size = Vector2(18, 112)
@@ -74,5 +79,19 @@ script = ExtResource("8_hpp2o")
 wait_time = 0.5
 one_shot = true
 autostart = true
+
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_kfpfr")
+autoplay = true
+script = ExtResource("10_4cpeo")
+
+[node name="Sfx1" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource("11_fj4lr")
+
+[node name="Sfx2" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource("12_cw3e0")
+
+[node name="Sfx3" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource("13_8ijro")
 
 [connection signal="timeout" from="InitialFireTimer" to="." method="_on_timer_timeout"]

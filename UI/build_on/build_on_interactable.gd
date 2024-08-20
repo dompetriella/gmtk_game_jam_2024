@@ -25,6 +25,7 @@ func _on_click(event: InputEvent):
 		var mouse_event = event as InputEventMouseButton;
 		if (mouse_event.button_index == MOUSE_BUTTON_LEFT && mouse_event.pressed):
 			Globals.current_player_build_ons.append(build_on);
+			
 			Events.build_on_chosen.emit(build_on);
 			_add_immediate_build_on(build_on);
 			if Globals.available_build_ons.has(build_on):
@@ -32,6 +33,7 @@ func _on_click(event: InputEvent):
 			Globals.current_level = Globals.current_level + 1;
 			Events.build_new_level.emit();
 			Events.hide_build_on_options.emit();
+			Events.sfx3_play.emit("res://assets/audio/sfx/power-up.mp3");
 			Events.player_enter_cutscene.emit(Enums.cutscene_type.LEAVE_STATION);
 
 func _add_immediate_build_on(build_on: BuildOn):
