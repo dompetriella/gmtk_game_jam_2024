@@ -24,27 +24,16 @@ expand_mode = 2
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 0
-offset_left = 576.0
-offset_top = 48.0
-offset_right = 1104.0
-offset_bottom = 115.0
+offset_left = 616.0
+offset_top = 64.0
+offset_right = 1064.0
+offset_bottom = 432.0
 theme_override_fonts/font = ExtResource("2_llc3f")
-theme_override_font_sizes/font_size = 32
-text = "CONGRATS ROBO RANGER"
+theme_override_font_sizes/font_size = 60
+text = "CONGRATS ROBO RANGER!"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 576.0
-offset_top = 160.0
-offset_right = 1104.0
-offset_bottom = 227.0
-theme_override_fonts/font = ExtResource("2_llc3f")
-theme_override_font_sizes/font_size = 32
-text = "Build-Ons"
-horizontal_alignment = 1
-vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="RestartGameButton" type="Button" parent="."]
 layout_mode = 0

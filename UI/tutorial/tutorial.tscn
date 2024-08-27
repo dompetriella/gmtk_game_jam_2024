@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://dlhyhfrog51ql"]
+[gd_scene load_steps=10 format=3 uid="uid://dlhyhfrog51ql"]
 
+[ext_resource type="Script" path="res://UI/tutorial/tutorial.gd" id="1_6ljqf"]
 [ext_resource type="Texture2D" uid="uid://djxnhqln6vbo6" path="res://assets/sprites/exports/splash-screen.png" id="1_jbykd"]
 [ext_resource type="Script" path="res://UI/tutorial/tutorial_button_continue.gd" id="1_trg82"]
 [ext_resource type="FontFile" uid="uid://t6tfbs8a4wyy" path="res://assets/fonts/Minecraft.ttf" id="2_bq7f0"]
@@ -16,6 +17,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_6ljqf")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1

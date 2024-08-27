@@ -1,17 +1,10 @@
 class_name BuildOnInteractable
 extends Control
-@onready var approval_bar: TextureProgressBar = $CanvasLayer/ApprovalBar
-@onready var energy_bar: TextureProgressBar = $CanvasLayer/EnergyBar
-
 @export var index: int;
-@onready var water_nozzle_area: Area2D = $WaterNozzleArea
-@onready var water_collision: CollisionShape2D = $WaterNozzleArea/WaterCollision
-@onready var water_particles: GPUParticles2D = $WaterNozzleArea/WaterParticles
 
 @onready var icon: TextureRect = $GPUParticles2D/Icon
 @onready var title: Label = $Title
 @onready var description: Label = $Description
-@onready var solar_battery_timer: Timer = $SolarBatteryTimer
 
 var build_on: BuildOn;
 # Called when the node enters the scene tree for the first time.
@@ -58,7 +51,12 @@ func _add_immediate_build_on(build_on: BuildOn):
 				child.start();
 	if (build_on.id == Enums.build_ons.MEGA_HOSE):
 		var new_shape = CircleShape2D.new()
-		new_shape.radius = 40
-		water_collision.shape = new_shape;
-		water_particles.amount = water_particles.amount * 2;
-		water_particles.lifetime = water_particles.lifetime * 2;
+		new_shape.radius = 32;
+		for child in player.get_children():
+			if (child.name == "WaterNozzleArea"):
+				for node in child.get_children():
+					if (node.name == "WaterCollision" && node is CollisionShape2D):
+						node.shape = new_shape;
+					if (node.name == "WaterParticles" && node is GPUParticles2D):
+						node.amount = node.amount * 2;
+						node.lifetime = node.lifetime * 2;

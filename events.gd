@@ -29,6 +29,7 @@ signal set_station_to_front;
 signal set_station_to_back;
 signal play_victory_jingle;
 signal play_main_theme;
+signal player_death_audio;
 signal sfx1_play(sound_path: String);
 signal sfx2_play(sound_path: String);
 signal sfx3_play(sound_path: String);

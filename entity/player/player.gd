@@ -58,8 +58,6 @@ func _process(delta: float):
 		handle_input();
 		move_and_animate(delta);
 		_handle_watering();
-	#print(self.global_position);
-	
 
 	
 func _handle_watering():

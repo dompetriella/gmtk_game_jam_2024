@@ -11,6 +11,7 @@ func _process(delta: float) -> void:
 	if (self.value <= 0):
 		var player: Player = get_tree().get_first_node_in_group(NodeGroups.player);
 		player.in_cutscene = true;
+		Events.player_death_audio.emit();
 		var movement_tween: Tween = create_tween();
 		movement_tween.tween_property(player, "global_position", Vector2(player.global_position.x, 40), (1)).from_current();
 		Events.fade_to_black.emit();

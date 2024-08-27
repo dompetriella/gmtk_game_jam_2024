@@ -14,6 +14,7 @@ func _process(delta: float) -> void:
 		var player: Player = get_tree().get_first_node_in_group(NodeGroups.player);
 		player.in_cutscene = true;
 		var movement_tween: Tween = create_tween();
+		Events.player_death_audio.emit();
 		movement_tween.tween_property(player, "global_position", Vector2(player.global_position.x, 40), (1)).from_current();
 		Events.fade_to_black.emit();
 		await get_tree().create_timer(2).timeout;
