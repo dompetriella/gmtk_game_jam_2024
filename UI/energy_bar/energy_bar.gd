@@ -16,4 +16,5 @@ func _process(delta: float) -> void:
 		Events.fade_to_black.emit();
 		await get_tree().create_timer(2).timeout;
 		Globals.current_level = 1;
+		Globals.current_player_build_ons = [];
 		get_tree().change_scene_to_file("res://UI/game_over/game_over.tscn");

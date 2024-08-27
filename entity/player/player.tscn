@@ -182,7 +182,7 @@ limit_bottom = 32
 position = Vector2(0, -29)
 shape = SubResource("CircleShape2D_pnxvi")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="WaterNozzleArea"]
+[node name="WaterParticles" type="GPUParticles2D" parent="WaterNozzleArea"]
 position = Vector2(0, -13)
 amount = 250
 process_material = SubResource("ParticleProcessMaterial_src6n")
@@ -238,6 +238,7 @@ theme_override_constants/separation = 48
 script = ExtResource("16_3nq5v")
 
 [node name="SolarBatteryTimer" type="Timer" parent="."]
+wait_time = 3.0
 
 [connection signal="area_entered" from="WaterNozzleArea" to="." method="_on_water_nozzle_area_area_entered"]
 [connection signal="timeout" from="SolarBatteryTimer" to="." method="_on_solar_battery_timer_timeout"]

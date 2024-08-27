@@ -198,12 +198,12 @@ func _generate_build_ons():
 	smother_blanket.sprite_path = "res://assets/sprites/exports/build_ons/smother-blanket-icon-sprite.png"
 	Globals.all_build_ons.append(smother_blanket)
 
-	#var solar_battery: BuildOn = BuildOn.new()
-	#solar_battery.id = Enums.build_ons.SOLAR_BATTERY
-	#solar_battery.title = "Solar Battery"
-	#solar_battery.description = "Passively regenerate energy"  # Add your description here
-	#solar_battery.sprite_path = "res://assets/sprites/exports/build_ons/solar-powered-icon-sprite.png"
-	#Globals.all_build_ons.append(solar_battery)
+	var solar_battery: BuildOn = BuildOn.new()
+	solar_battery.id = Enums.build_ons.SOLAR_BATTERY
+	solar_battery.title = "Solar Battery"
+	solar_battery.description = "Passively regenerate energy"  # Add your description here
+	solar_battery.sprite_path = "res://assets/sprites/exports/build_ons/solar-powered-icon-sprite.png"
+	Globals.all_build_ons.append(solar_battery)
 
 	
 	print(Globals.all_build_ons);

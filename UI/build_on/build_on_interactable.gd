@@ -5,6 +5,8 @@ extends Control
 
 @export var index: int;
 @onready var water_nozzle_area: Area2D = $WaterNozzleArea
+@onready var water_collision: CollisionShape2D = $WaterNozzleArea/WaterCollision
+@onready var water_particles: GPUParticles2D = $WaterNozzleArea/WaterParticles
 
 @onready var icon: TextureRect = $GPUParticles2D/Icon
 @onready var title: Label = $Title
@@ -50,6 +52,13 @@ func _add_immediate_build_on(build_on: BuildOn):
 		player.energy_capacity = player.energy_capacity * 4;
 		player.speed = player.speed * 0.8;
 	if (build_on.id == Enums.build_ons.SOLAR_BATTERY):
-		solar_battery_timer.start();
+		var player_children: Array[Node] = player.get_children();
+		for child in player_children:
+			if (child is Timer):
+				child.start();
 	if (build_on.id == Enums.build_ons.MEGA_HOSE):
-		water_nozzle_area.scale = Vector2(2, 2);
+		var new_shape = CircleShape2D.new()
+		new_shape.radius = 40
+		water_collision.shape = new_shape;
+		water_particles.amount = water_particles.amount * 2;
+		water_particles.lifetime = water_particles.lifetime * 2;

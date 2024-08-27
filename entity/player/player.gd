@@ -10,16 +10,20 @@ extends CharacterBody2D
 @export var energy_usage_while_dowsing: float = 12;
 @export var energy_usage_rate: float = 100;
 
+@export var total_approval = 1000;
+
 @onready var approval_bar: TextureProgressBar = $CanvasLayer/ApprovalBar
 @onready var energy_bar: TextureProgressBar = $CanvasLayer/EnergyBar
 
 @onready var water_nozzle_area: Area2D = $WaterNozzleArea
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var water_particles: GPUParticles2D = $WaterNozzleArea/GPUParticles2D
+@onready var water_particles: GPUParticles2D = $WaterNozzleArea/WaterParticles
+
 
 var direction: Vector2 = Vector2.ZERO
 var is_watering: bool = false;
 var current_energy: float = energy_capacity;
+var current_approval: float = total_approval;
 var in_cutscene: bool = false;
 
 var jet_propulsion_multiplier = 1;
@@ -40,6 +44,12 @@ func _ready() -> void:
 	)
 	Events.reset_player_to_origin.connect(_on_reset_player_to_ranger_station);
 
+	Events.adjust_approval.connect(func(amount):
+		if (current_approval + amount >= total_approval):
+			current_approval = total_approval;
+		else:
+			current_approval += amount;
+	)
 
 
 func _process(delta: float):
@@ -99,7 +109,15 @@ func move_and_animate(delta: float):
 		if !(Globals.check_if_player_has_build_on(Enums.build_ons.MECHANICAL_ARM)):
 			Events.player_takes_energy_damage.emit(energy_usage_while_still);
 		player_sprite.pause();
-		
+	
+	if (is_watering):
+		var hazard_tiles = water_nozzle_area.get_overlapping_areas()
+		for tile in hazard_tiles:
+			if (tile is Hazard):
+				if (tile.is_on_fire):
+					Events.dowse_hazard_tile.emit(tile.hazard_list_index);
+				
+	
 func _handle_cutscene(cutscene_type: Enums.cutscene_type):
 	self.in_cutscene = true;
 	if (cutscene_type == Enums.cutscene_type.CLIMB_UP):
@@ -192,13 +210,13 @@ func _on_water_nozzle_area_area_entered(area: Area2D) -> void:
 
 
 func _on_solar_battery_timer_timeout() -> void:
-	self.current_energy += 50;
+	self.current_energy += 5;
+	print(current_energy);
 
 func _add_approval_to_energy():
-	var player: Player = get_tree().get_first_node_in_group(NodeGroups.player);
 
-	var approval_increase = player.energy_capacity * (approval_bar.current_approval / approval_bar.total_approval);
-	if (energy_bar.value + approval_increase > player.energy_capacity):
-		energy_bar.value = player.energy_capacity;
+	var approval_increase = self.energy_capacity * (self.current_approval / self.total_approval) * .25;
+	if (self.current_energy + approval_increase > self.energy_capacity):
+		self.current_energy = self.energy_capacity;
 	else:
-		energy_bar.value = energy_bar.value + approval_increase;
+		self.current_energy = self.current_energy + approval_increase;

@@ -54,13 +54,15 @@ func _fire_timer_timeout():
 	var hazard_children: Array[Node] = self.get_children();
 	var first_fire_tile_vector: Vector2;
 	var i: int = 0;
+	var player: Player = get_tree().get_first_node_in_group(NodeGroups.player);
 	while (true):
 		i += 1;
 		first_fire_tile_vector = Vector2((randi() % int(base_size.x)), (randi() % int(base_size.y) + 2));
 		for hazard: Hazard in hazard_children:
 			if (hazard.hazard_coordinate == first_fire_tile_vector && hazard.is_on_fire == false):
 				hazard.is_on_fire = true;
-				Events.adjust_approval.emit(-1);
+				if (!player.in_cutscene):
+					Events.adjust_approval.emit(-1);
 				hazard.set_animated_sprite(fire_animated_sprite);
 				break;
 			break;

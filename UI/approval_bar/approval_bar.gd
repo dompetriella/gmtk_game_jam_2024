@@ -1,22 +1,14 @@
 extends TextureProgressBar
 
-var total_approval = 1000;
-var current_approval = 1000;
+@onready var player: Player = $"../.."
 
-func _ready() -> void:
-	Events.adjust_approval.connect(func(amount):
-		if (current_approval + amount >= total_approval):
-			current_approval = total_approval;
-		else:
-			current_approval += amount;
-	)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var tile_generator: TileMapGenerator = get_tree().get_first_node_in_group(NodeGroups.tile_generator);
 	var hazard_generator: HazardGenerator = get_tree().get_first_node_in_group(NodeGroups.hazard_generator);
 	
-	self.max_value = total_approval;
-	self.value = current_approval; 
+	self.max_value = player.total_approval;
+	self.value = player.current_approval; 
 	
 	if (self.value <= 0):
 		var player: Player = get_tree().get_first_node_in_group(NodeGroups.player);
@@ -26,4 +18,5 @@ func _process(delta: float) -> void:
 		Events.fade_to_black.emit();
 		await get_tree().create_timer(2).timeout;
 		Globals.current_level = 1;
+		Globals.current_player_build_ons = [];
 		get_tree().change_scene_to_file("res://UI/game_over/game_over.tscn");

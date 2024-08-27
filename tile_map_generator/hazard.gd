@@ -20,14 +20,14 @@ func set_animated_sprite(sprite: SpriteFrames):
 		animated_sprite_2d.play();
 
 func _dowse_hazard_tile(tile_id: int):
-	if (hazard_list_index == tile_id):
-		is_on_fire = false;
+	if (hazard_list_index == tile_id && self.is_on_fire):
 		set_animated_sprite(null);
 		var hazard_children: Array[Node] = self.get_children();
 		for child in hazard_children:
 			if (child is Timer):
 				child.stop();
 		Events.adjust_approval.emit(4);
+		is_on_fire = false;
 
 
 func _on_body_entered(body: Node2D) -> void:
