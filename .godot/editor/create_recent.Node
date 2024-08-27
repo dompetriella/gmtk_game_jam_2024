@@ -1,9 +1,9 @@
+Label
+TextureButton
 AudioStreamPlayer
 GPUParticles2D
 AudioStreamPlayer2D
-TextureButton
 Button
-Label
 ColorRect
 TextureRect
 Timer
@@ -12,4 +12,3 @@ Sprite2D
 Control
 VBoxContainer
 TextureProgressBar
-Node2D

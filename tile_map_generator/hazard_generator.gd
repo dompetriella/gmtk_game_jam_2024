@@ -48,7 +48,7 @@ func _generate_area_2d_hazard_base_layer():
 		self.add_child(hazard);
 	
 func _on_fire_timer_timeout() -> void:
-	_fire_timer_timeout();
+	self.call_deferred("_fire_timer_timeout");
 	
 func _fire_timer_timeout():
 	var hazard_children: Array[Node] = self.get_children();
@@ -66,7 +66,7 @@ func _fire_timer_timeout():
 				hazard.set_animated_sprite(fire_animated_sprite);
 				break;
 			break;
-		if (i >= 50):
+		if (i >= 20):
 			break;
 	_set_fire_to_neighbors(first_fire_tile_vector);
 
@@ -101,7 +101,7 @@ func _add_fire_timer_to_neighbors(neighbor: Hazard, old_timer: float) -> void:
 			neighbor.set_animated_sprite(fire_animated_sprite);
 			var new_fire_timer: Timer = Timer.new();
 			new_fire_timer.autostart = true;
-			new_fire_timer.wait_time = time_between_spreading_fire;
+			new_fire_timer.wait_time =  randf_range(time_between_spreading_fire - 3.0, time_between_spreading_fire + 5.0);
 			new_fire_timer.timeout.connect(_set_fire_to_neighbors.bind(neighbor.hazard_coordinate));
 			neighbor.add_child(new_fire_timer);
 		
