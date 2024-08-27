@@ -213,7 +213,7 @@ func _on_solar_battery_timer_timeout() -> void:
 
 func _add_approval_to_energy():
 
-	var approval_increase = self.energy_capacity * (self.current_approval / self.total_approval) * .25;
+	var approval_increase = self.energy_capacity * (self.current_approval / self.total_approval) * .15;
 	if (self.current_energy + approval_increase > self.energy_capacity):
 		self.current_energy = self.energy_capacity;
 	else:
